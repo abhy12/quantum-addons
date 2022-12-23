@@ -1,0 +1,7 @@
+.quantum-swiper-container .swiper-pagination,
+.quantum-swiper-container .swiper-scrollbar{
+    position: static;
+}
+.quantum-swiper-container .swiper-slide{
+    height: unset;
+}
