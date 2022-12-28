@@ -1,175 +1,184 @@
-class advanceSlider extends elementorModules.frontend.handlers.SwiperBase {
-  constructor(elements) {
-    super(elements);
-    this.newSwiper(this.elements.$container);
-    // console.log( this.getElementSettings( 'slide_per_group' ) );
-  }
+class advanceSlider extends elementorModules.frontend.handlers.Base {
+  	// constructor( elements ) {
+   //  	super( elements );
+   //  	this.newSwiper( this.elements.$container );
+   //  	// console.log( this.getElementSettings( 'slide_per_group' ) );
+  	// }
 
-  getDefaultSettings() {
-    return {
-      selectors: {
-        container: ".quantum-swiper-container",
-      },
-    };
-  }
+  	getDefaultSettings() {
+    	return {
+      	selectors: {
+        		container: ".quantum-swiper-container",
+      	},
+    	}
+  	}
 
-  getSwiperDefaultConfig() {
-    const settings = this.getElementSettings;
-    return {
-      direction: "horizontal",
-      loop: settings("loop") ? true : false,
-      pagination: {
-        el: ".swiper-pagination",
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      scrollbar: {
-        el: ".swiper-scrollbar",
-      },
-    };
-  }
+	getDefaultElements() {
+		const selectors = this.getSettings( "selectors" );
 
-  getDefaultElements() {
-    const selectors = this.getSettings("selectors");
-    return {
-      $container: this.$element.find(selectors.container),
-      // $button: this.$element.find(selectors.button),
-    };
-  }
+		return {
+			$container: this.$element.find( selectors.container ),
+		}
+  	}
 
-  //used for adding eventListner to any element
-  // bindEvents() {
-  //   this.elements.$button.on("click", this.onButtonClick.bind(this));
-  // }
+	onInit()  {
+		console.log( this.getDefaultElements().$container );
+	}
 
-  /**
-   * add responsive settings
-   * @param Object of swiper config
-   * @param Object with key of the swiper option and the value of elementId
-   * @returns Object with breakpoints
-   */
-  addBreakPointSettings(config, args) {
-    const settings = this.getElementSettings,
-      allBreakPoints = elementorFrontend.config.responsive.activeBreakpoints,
-      breakpointName = Object.keys(allBreakPoints);
-    let breakpointSettings = {},
-      lastBreakpoint;
+  	getSwiperDefaultConfig() {
+    	const settings = this.getElementSettings;
 
-    args.forEach((option) => {
-      lastBreakpoint = null;
-      const arg = Object.keys(option);
-      const optionKey = arg[0];
-      const optionValue = option[optionKey];
-      const optionType = option.type;
+    	return {
+			direction: "horizontal",
+			loop: settings( "loop" ) ? true : false,
+			pagination: {
+				el: ".swiper-pagination",
+			},
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+			scrollbar: {
+				el: ".swiper-scrollbar",
+			},
+    	}
+  	}
 
-      for (let i = 0; i <= breakpointName.length; i++) {
-        let breakpointBreakpoint, elementValue;
+	/**
+	* add responsive settings
+	* @param Object of swiper config
+	* @param Object with key of the swiper option and the value of elementId
+	* @returns Object with breakpoints
+	*/
+  	addBreakPointSettings( config, args ) {
+    	const settings = this.getElementSettings,
+      	allBreakPoints = elementorFrontend.config.responsive.activeBreakpoints,
+      	breakpointName = Object.keys( allBreakPoints );
+    	let breakpointSettings = {},
+      	lastBreakpoint;
 
-        if (i !== breakpointName.length) {
-          elementValue = settings(optionValue + "_" + breakpointName[i]);
-        } else if (i === breakpointName.length)
-          elementValue = settings(optionValue);
+    	args.forEach( ( option ) => {
+			lastBreakpoint = null;
+			const arg = Object.keys( option );
+			const optionKey = arg[0];
+			const optionValue = option[optionKey];
+			const optionType = option.type;
 
-        if (elementValue === undefined || elementValue === "") continue;
+			for( let i = 0; i <= breakpointName.length; i++ ) {
+				let breakpointBreakpoint, elementValue;
 
-        if (optionType !== undefined) {
-          if (optionType === "BOOLEAN") {
-            if (elementValue == 0) {
-              elementValue = false;
-            } else elementValue = true;
-          } else if (optionType === "NUMBER") {
-            if (parseInt(elementValue) === NaN) {
-              console.error(optionValue + " Needs to be a number");
-              continue;
-            }
-          }
-        } else {
-          console.error("You have to define type of " + optionValue);
-          continue;
-        }
+				if( i !== breakpointName.length ) {
+					elementValue = settings( optionValue + "_" + breakpointName[i] );
+				} else if( i === breakpointName.length )
+					elementValue = settings( optionValue )
 
-        if (i === breakpointName.length) {
-          breakpointBreakpoint = {[optionKey]: elementValue};
-          breakpointSettings[lastBreakpoint] = {
-            ...breakpointSettings[lastBreakpoint],
-            ...breakpointBreakpoint,
-          };
-        } else if (i < breakpointName.length) {
-          if (i === 0) {
-            config[optionKey] = elementValue;
-          } else if (i > 0) {
-            breakpointBreakpoint = {[optionKey]: elementValue};
-            breakpointSettings[lastBreakpoint] = {
-              ...breakpointSettings[lastBreakpoint],
-              ...breakpointBreakpoint,
-            };
-          }
+				if( elementValue === undefined || elementValue === "" ) continue;
 
-          lastBreakpoint = allBreakPoints[breakpointName[i]].value;
-          if (allBreakPoints[breakpointName[i]].direction === "max") {
-            lastBreakpoint++;
-          }
-        }
-      }
-    });
+				if( optionType !== undefined ) {
 
-    config.breakpoints = {...breakpointSettings};
-    return config;
-  }
+					if( optionType === "BOOLEAN" ) {
 
-  newSwiper(el) {
-    const responsiveOptions = [
-      {
-        slidesPerView: "slide_per_view",
-        type: "NUMBER",
-      },
-      {
-        centeredSlides: "center_slide",
-        type: "BOOLEAN",
-      },
-      {
-        spaceBetween: "space_between",
-        type: "NUMBER",
-      },
-      {
-        slidesPerGroup: "slide_per_group",
-        type: "NUMBER",
-      },
-    ];
+						if( elementValue == 0 ) {
+							elementValue = false;
+						} else elementValue = true;
 
-    let defaultSwiperConfig = this.getSwiperDefaultConfig(),
+					} else if( optionType === "NUMBER" ) {
+
+						if( parseInt( elementValue ) === NaN ) {
+							console.error( optionValue + " Needs to be a number" );
+							continue;
+						}
+					}
+
+				} else {
+					console.error( "You have to define type of " + optionValue );
+					continue;
+				}
+
+				if( i === breakpointName.length ) {
+
+					breakpointBreakpoint = {
+						[optionKey]: elementValue
+					}
+
+					breakpointSettings[lastBreakpoint] = {
+						...breakpointSettings[lastBreakpoint],
+						...breakpointBreakpoint,
+					}
+
+				} else if( i < breakpointName.length ) {
+					if( i === 0 ) {
+						config[optionKey] = elementValue;
+
+					} else if( i > 0 ) {
+						breakpointBreakpoint = {
+							[optionKey]: elementValue
+						}
+
+						breakpointSettings[lastBreakpoint] = {
+							...breakpointSettings[lastBreakpoint],
+							...breakpointBreakpoint,
+						}
+					}
+
+					lastBreakpoint = allBreakPoints[breakpointName[i]].value;
+					if( allBreakPoints[breakpointName[i]].direction === "max" ) {
+						lastBreakpoint++;
+					}
+				}
+			}
+   	});
+
+    	config.breakpoints = { ...breakpointSettings }
+    	return config;
+  	}
+
+  	newSwiper( el ) {
+    	const responsiveOptions = [
+			{
+				slidesPerView: "slide_per_view",
+				type: "NUMBER",
+		   },
+			{
+				centeredSlides: "center_slide",
+				type: "BOOLEAN",
+			},
+			{
+				spaceBetween: "space_between",
+				type: "NUMBER",
+			},
+			{
+				slidesPerGroup: "slide_per_group",
+				type: "NUMBER",
+			},
+    	];
+
+    	let defaultSwiperConfig = this.getSwiperDefaultConfig(),
       swiperConfig = this.addBreakPointSettings(
-        defaultSwiperConfig,
-        responsiveOptions
+        	defaultSwiperConfig,
+        	responsiveOptions
       );
-    console.log(swiperConfig);
+    	console.log( swiperConfig );
 
-    // Not using typeof Swiper condition logic here because
-    // if you link swiper lib via CDN element built with elementor's
-    // swiper instance won't work
-    //
-    // P.S. I have not put lots of thought into it and maybe change it later
-    //
-    const Swiper = elementorFrontend.utils.swiper;
-    new Swiper(el, swiperConfig).then((newSwiperInstance) => {
-      let mySwiper = newSwiperInstance;
-      this.elements.$container.data("swiper", mySwiper);
-      // console.log( this.elements.$container.data() );
-    });
-  }
+		// Not using typeof Swiper condition logic here because
+		// if you link swiper lib via CDN element built with elementor's
+		// swiper instance won't work
+		//
+		// P.S. I have not put lots of thought into it and maybe change it later
+		//
+   	const Swiper = elementorFrontend.utils.swiper;
+    	new Swiper( el, swiperConfig ).then( ( newSwiperInstance ) => {
+			let mySwiper = newSwiperInstance;
+			this.elements.$container.data("swiper", mySwiper);
+      	// console.log( this.elements.$container.data() );
+    	})
+  	}
 }
 
-jQuery(window).on("elementor/frontend/init", () => {
-  const addHandler = ($element) => {
-    elementorFrontend.elementsHandler.addHandler(simpleSlider, {
-      $element,
-    });
-  };
+jQuery(window).on( "elementor/frontend/init", () => {
+  	const addHandler = ( $element ) => {
+    	elementorFrontend.elementsHandler.addHandler( advanceSlider, { $element });
+  	}
 
-  elementorFrontend.hooks.addAction(
-    "frontend/element_ready/simple_slider.default",
-    addHandler
-  );
+  	elementorFrontend.hooks.addAction( "frontend/element_ready/Advance_slider.default", addHandler );
 });

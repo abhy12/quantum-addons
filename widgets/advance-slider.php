@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -22,8 +22,10 @@ class advance_slider extends \Elementor\Widget_Base {
     public function init_templates()  {
         $this->templates['default'] = $this->get_default_template();
         $this->template_names['default'] = 'Default';
+
         if( file_exists( $this->theme_template_path ) && is_dir( $this->theme_template_path ) && is_readable( $this->theme_template_path ) )  {
             $files = array_filter( glob( $this->theme_template_path.'/*.html*' ), 'is_file' );
+
             foreach( $files as $file )  {
                 $file_name = basename( $file, '.html' );
                 $file_name = ucfirst( trim( preg_replace( '/[-_]/', ' ', $file_name  ) ) );
@@ -57,7 +59,7 @@ class advance_slider extends \Elementor\Widget_Base {
     }
 
     public function get_title()  {
-       return esc_html__( 'advance Slider' );
+       return esc_html__( 'Advance Slider' );
     }
 
     public function get_icon()  {
@@ -65,7 +67,7 @@ class advance_slider extends \Elementor\Widget_Base {
     }
 
     public function get_custom_help_url() {
-        return 'https://github.com/Abhishek-Yesankar/';
+        return 'https://github.com/abhy12/quantum-addons';
     }
 
     public function get_categories()  {
@@ -769,9 +771,9 @@ class advance_slider extends \Elementor\Widget_Base {
     protected function render()  { 
       $settings = $this->get_settings_for_display();
       $slides = $settings['slides'];
-      $current_template = $this->templates[$settings['select_template']];      
+      $current_template = $this->templates[$settings['select_template']];
       ?>
-       <div id="my-id" class="swiper-container quantum-swiper-container">
+       <div class="swiper-container quantum-swiper-container">
           <div class="swiper-wrapper">
             <?php 
             foreach( $slides as $slide ) {
