@@ -1,9 +1,4 @@
 class advanceSlider extends elementorModules.frontend.handlers.Base {
-  	// constructor( elements ) {
-   //  	super( elements );
-   //  	this.newSwiper( this.elements.$container );
-   //  	// console.log( this.getElementSettings( 'slide_per_group' ) );
-  	// }
 
   	getDefaultSettings() {
     	return {
