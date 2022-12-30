@@ -16,10 +16,41 @@ class advanceSlider extends elementorModules.frontend.handlers.Base {
    }
 
    onInit() {
-      this.newSwiper( this.getDefaultElements().$container );
+      this.initSwiper( this.getDefaultElements().$container );
    }
 
-   newSwiper( el ) {
+   initSwiper( el ) {
+      let swiperConfig = this.getSwiperConfig();
+      console.log( swiperConfig );
+
+      /// Swiper elementor internal library
+      const Swiper = elementorFrontend.utils.swiper;
+
+      new Swiper( el, swiperConfig ).then( ( newSwiperInstance ) => {
+         let mySwiper = newSwiperInstance;
+         this.getDefaultElements().$container.data( "swiper", mySwiper );
+         // console.log( this.elements.$container.data() );
+      });
+   }
+
+   getSwiperConfig() {
+      const settings = this.getElementSettings;
+      const allBreakPoints = elementorFrontend.config.responsive.activeBreakpoints;
+      const breakpointName = Object.keys( allBreakPoints );
+      const config = {
+         direction: "horizontal",
+         loop: settings( "loop" ) ? true : false,
+         pagination: {
+            el: ".swiper-pagination",
+         },
+         navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+         },
+         scrollbar: {
+            el: ".swiper-scrollbar",
+         },
+      }
       const responsiveOptions = [
          {
             slidesPerView: "slide_per_view",
@@ -39,52 +70,10 @@ class advanceSlider extends elementorModules.frontend.handlers.Base {
          },
       ];
 
-      let defaultSwiperConfig = this.getSwiperDefaultConfig(),
-         swiperConfig = this.addBreakPointSettings(
-            defaultSwiperConfig,
-            responsiveOptions
-         );
-      console.log( swiperConfig );
-
-      /// Not using typeof Swiper condition logic here because
-      /// if you link swiper library via any other source the
-      /// element built with elementor's swiper instance won't work
-    
-      const Swiper = elementorFrontend.utils.swiper;
-      new Swiper( el, swiperConfig ).then( ( newSwiperInstance ) => {
-         let mySwiper = newSwiperInstance;
-         this.getDefaultElements().$container.data( "swiper", mySwiper );
-         // console.log( this.elements.$container.data() );
-      });
-   }
-
-   getSwiperDefaultConfig() {
-      const settings = this.getElementSettings;
-
-      return {
-         direction: "horizontal",
-         loop: settings( "loop" ) ? true : false,
-         pagination: {
-            el: ".swiper-pagination",
-         },
-         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-         },
-         scrollbar: {
-            el: ".swiper-scrollbar",
-         },
-      }
-   }
-
-   addBreakPointSettings( config, args ) {
-      const settings = this.getElementSettings,
-         allBreakPoints = elementorFrontend.config.responsive.activeBreakpoints,
-         breakpointName = Object.keys( allBreakPoints );
       let breakpointSettings = {},
          lastBreakpoint;
 
-      args.forEach( ( option ) => {
+      responsiveOptions.forEach( ( option ) => {
          lastBreakpoint = null;
          const arg = Object.keys( option );
          const optionKey = arg[0];
@@ -155,7 +144,7 @@ class advanceSlider extends elementorModules.frontend.handlers.Base {
 
 jQuery( window ).on( "elementor/frontend/init", () => {
    const addHandler = ( $element ) => {
-      elementorFrontend.elementsHandler.addHandler(advanceSlider, { $element });
+      elementorFrontend.elementsHandler.addHandler( advanceSlider, { $element } );
    };
 
    elementorFrontend.hooks.addAction(
