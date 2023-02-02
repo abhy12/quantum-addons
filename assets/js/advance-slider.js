@@ -1,5 +1,5 @@
-class advanceSlider extends elementorModules.frontend.handlers.Base {
-   getDefaultSettings() {
+class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
+   getDefaultSettings()  {
       return {
          selectors: {
             container: ".quantum-swiper-container",
@@ -7,7 +7,7 @@ class advanceSlider extends elementorModules.frontend.handlers.Base {
       }
    }
 
-   getDefaultElements() {
+   getDefaultElements()  {
       const selectors = this.getSettings( "selectors" );
 
       return {
@@ -15,31 +15,41 @@ class advanceSlider extends elementorModules.frontend.handlers.Base {
       }
    }
 
-   onInit() {
+   onInit()  {
       this.initSwiper( this.getDefaultElements().$container );
    }
 
-   initSwiper( el ) {
+   async initSwiper( el )  {
       let swiperConfig = this.getSwiperConfig();
       console.log( swiperConfig );
 
       /// Swiper elementor internal library
       const Swiper = elementorFrontend.utils.swiper;
+      const newSwiperInstance = await new Swiper( el, swiperConfig );
 
-      new Swiper( el, swiperConfig ).then( ( newSwiperInstance ) => {
-         let mySwiper = newSwiperInstance;
-         this.getDefaultElements().$container.data( "swiper", mySwiper );
-         // console.log( this.elements.$container.data() );
-      });
+      ///adding swiper instance to container with Jquery data function
+      ///P.S i don't know why anyone will need this, but just leaving it right here for now
+      this.getDefaultElements().$container.data( "swiper", newSwiperInstance );
    }
 
-   getSwiperConfig() {
-      const settings = this.getElementSettings;
-      const allBreakPoints = elementorFrontend.config.responsive.activeBreakpoints;
-      const breakpointName = Object.keys( allBreakPoints );
-      const config = {
+   getSwiperConfig()  {
+      ///all the elements settings
+      const settings = this.getElementSettings();
+      const elementorBreakpoints = elementorFrontend.config.responsive.activeBreakpoints;
+      const desktopSlideToShow = +settings['slide_per_view'];
+      const desktopCenterSlides = +settings['center_slide'] ? true : false;
+      const desktopSpaceBetween = +settings['space_between'];
+      const desktopSlidePerGroup = +settings['slide_per_group'];
+
+
+      ///default config for swiper
+      const swiperConfig =  {
          direction: "horizontal",
-         loop: settings( "loop" ) ? true : false,
+         loop: settings["loop"] ? true : false,
+         slidesPerView: desktopSlideToShow,
+         centeredSlides: desktopCenterSlides,
+         spaceBetween: desktopSpaceBetween,
+         slidesPerGroup: desktopSlidePerGroup,
          pagination: {
             el: ".swiper-pagination",
          },
@@ -50,99 +60,27 @@ class advanceSlider extends elementorModules.frontend.handlers.Base {
          scrollbar: {
             el: ".swiper-scrollbar",
          },
+         breakpoints: {},
+         ///i saw this code in Elementor source code and this seems to 
+         ///"correct" the breakpoints according to swiper breakpoints
+         handleElementorBreakpoints: true,
       }
-      const responsiveOptions = [
-         {
-            slidesPerView: "slide_per_view",
-            type: "NUMBER",
-         },
-         {
-            centeredSlides: "center_slide",
-            type: "BOOLEAN",
-         },
-         {
-            spaceBetween: "space_between",
-            type: "NUMBER",
-         },
-         {
-            slidesPerGroup: "slide_per_group",
-            type: "NUMBER",
-         },
-      ];
 
-      let breakpointSettings = {},
-         lastBreakpoint;
+      ////add breakpoints values to swiper config
+      Object.keys( elementorBreakpoints ).reverse().forEach( ( breakpointName ) =>  {
+			swiperConfig.breakpoints[ elementorBreakpoints[ breakpointName ].value ] =  {
+				slidesPerView: +settings['slide_per_view_' + breakpointName],
+            centeredSlides: +settings['center_slide_' + breakpointName] ? true : false,
+				spaceBetween: +settings['space_between_' + breakpointName],
+				slidesPerGroup: +settings['slide_per_group_' + breakpointName],
+			}
+		});
 
-      responsiveOptions.forEach( ( option ) => {
-         lastBreakpoint = null;
-         const arg = Object.keys( option );
-         const optionKey = arg[0];
-         const optionValue = option[optionKey];
-         const optionType = option.type;
-
-         for( let i = 0; i <= breakpointName.length; i++ ) {
-            let breakpointBreakpoint, elementValue;
-
-            if( i !== breakpointName.length ) {
-               elementValue = settings( optionValue + "_" + breakpointName[i] );
-            } else if( i === breakpointName.length )
-               elementValue = settings( optionValue );
-
-            if( elementValue === undefined || elementValue === "" ) continue;
-
-            if( optionType !== undefined ) {
-               if( optionType === "BOOLEAN" ) {
-                  if( elementValue == 0 ) {
-                     elementValue = false;
-                  } else elementValue = true;
-               } else if( optionType === "NUMBER" ) {
-                  if( parseInt( elementValue ) === NaN ) {
-                     console.error( optionValue + " Needs to be a number" );
-                     continue;
-                  }
-               }
-            } else {
-               console.error( "You have to define type of " + optionValue );
-               continue;
-            }
-
-            if( i === breakpointName.length ) {
-               breakpointBreakpoint = {
-                  [optionKey]: elementValue,
-               }
-
-               breakpointSettings[lastBreakpoint] = {
-                  ...breakpointSettings[lastBreakpoint],
-                  ...breakpointBreakpoint,
-               }
-            } else if( i < breakpointName.length ) {
-               if( i === 0 ) {
-                  config[ optionKey ] = elementValue;
-               } else if( i > 0 ) {
-                  breakpointBreakpoint = {
-                     [optionKey]: elementValue,
-                  }
-
-                  breakpointSettings[lastBreakpoint] = {
-                     ...breakpointSettings[lastBreakpoint],
-                     ...breakpointBreakpoint,
-                  }
-               }
-
-               lastBreakpoint = allBreakPoints[breakpointName[i]].value;
-               if( allBreakPoints[ breakpointName[i]].direction === "max" ) {
-                  lastBreakpoint++;
-               }
-            }
-         }
-      });
-
-      config.breakpoints = { ...breakpointSettings };
-      return config;
+      return swiperConfig;
    }
 }
 
-jQuery( window ).on( "elementor/frontend/init", () => {
+jQuery( window ).on( "elementor/frontend/init", () =>  {
    const addHandler = ( $element ) => {
       elementorFrontend.elementsHandler.addHandler( advanceSlider, { $element } );
    };
