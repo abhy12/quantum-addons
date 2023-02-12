@@ -146,7 +146,7 @@ class advance_slider extends \Elementor\Widget_Base {
           ]
         );
 
-        $this->add_control( 
+        $this->add_control(
             'slides',
             [
                 'label'   => esc_html__( 'Slides' ),
@@ -170,44 +170,6 @@ class advance_slider extends \Elementor\Widget_Base {
                 'tab'    => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
-
-        $this->add_control(
-            'order_image',
-            [
-                'label'   => esc_html__( 'Image Order' ),
-                'type'    => \Elementor\Controls_Manager::NUMBER,
-                'default' => 1
-            ]
-        );
-
-        $this->add_control(
-            'order_title',
-            [
-                'label'   => esc_html__( 'Title Order' ),
-                'type'    => \Elementor\Controls_Manager::NUMBER,
-                'default' => 2
-            ]
-        );
-
-        $this->add_control(
-            'order_content',
-            [
-                'label'   => esc_html__( 'Content Order' ),
-                'type'    => \Elementor\Controls_Manager::NUMBER,
-                'default' => 3
-            ]
-        );
-
-        $this->add_control(
-            'order_additional',
-            [
-                'label'   => esc_html__( 'additional Order' ),
-                'type'    => \Elementor\Controls_Manager::NUMBER,
-                'default' => 4
-            ]
-        );
- 
-        $this->end_controls_section();
 
         $this->start_controls_section(
             'slider-options',
@@ -326,7 +288,7 @@ class advance_slider extends \Elementor\Widget_Base {
                 'label'       => esc_html__( 'Padding' ),
                 'type'        => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units'  => [ 'px', 'rem' ,'em', '%' ],
-                'description' => esc_html__( 'Note: any changes to this padding you may want to reload the browser for properly working slider' ),
+                'description' => esc_html__( 'Note: if you change padding you may want to reload the browser (if slider not working properly)' ),
                 'selectors' => [
 					'{{WRAPPER}} .quantum-swiper-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -764,7 +726,7 @@ class advance_slider extends \Elementor\Widget_Base {
 				],
             ]
         );
-        
+
         $this->end_controls_section();
     }
 
