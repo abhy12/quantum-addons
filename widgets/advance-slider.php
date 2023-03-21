@@ -43,7 +43,7 @@ class advance_slider extends \Elementor\Widget_Base {
               <div class="el-quantum-content-container">
                 <h3 class="el-quantum-title">{{Title}}</h3>
                 <p class="el-quantum-content">{{Paragraph}}</p>
-                <p class="el-quantum-add-content">{{Additional_content}}</p>  
+                <p class="el-quantum-add-content">{{Additional_content}}</p>
             </div>
         </div>
         Template;
@@ -52,7 +52,7 @@ class advance_slider extends \Elementor\Widget_Base {
 
     public function get_template_tags()  {
         return ['Image\.src', 'Image\.alt', 'Title', 'Paragraph', 'Additional_content'];
-    }  
+    }
 
     public function get_name()  {
         return 'Advance_slider';
@@ -96,7 +96,7 @@ class advance_slider extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control( 
+        $this->add_control(
             'select_template',
             [
                 'label'    => esc_html__( 'Select Template' ),
@@ -127,7 +127,7 @@ class advance_slider extends \Elementor\Widget_Base {
                 'placeholder'  =>  esc_html__( 'Write someting...' )
             ]
         );
-    
+
         $repeater->add_control(
             'content',
             [
@@ -158,18 +158,10 @@ class advance_slider extends \Elementor\Widget_Base {
                         'content'  => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus earum fuga nam.",
                     ]
                 ]
-            ] 
+            ]
         );
 
         $this->end_controls_section();
-
-        $this->start_controls_section(
-            'content-section',
-            [
-                'label'    => esc_html__( 'Content Order' ),
-                'tab'    => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
-        );
 
         $this->start_controls_section(
             'slider-options',
@@ -179,7 +171,7 @@ class advance_slider extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_responsive_control( 
+        $this->add_responsive_control(
             'slide_per_view',
             [
                 'label'    => esc_html__( 'Slide Per View' ),
@@ -197,9 +189,9 @@ class advance_slider extends \Elementor\Widget_Base {
                 'label'    => esc_html__( 'Slide Per Group' ),
                 'type'     => \Elementor\Controls_Manager::SELECT,
                 'options'  => [
-                  '1' => '1', 
-                  '2' => '2', 
-                  '3' => '3', 
+                  '1' => '1',
+                  '2' => '2',
+                  '3' => '3',
                   '4' => '4',
                   '5' => '5',
                   '6' => '6',
@@ -221,7 +213,7 @@ class advance_slider extends \Elementor\Widget_Base {
                'type'    =>  \Elementor\Controls_Manager::SELECT,
                'options' =>  [
                   '1'  => 'Yes',
-                  '0'  => 'No', 
+                  '0'  => 'No',
                ],
                'desktop_default' => '1',
 			   'tablet_default'  => '1',
@@ -231,7 +223,7 @@ class advance_slider extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_responsive_control( 
+        $this->add_responsive_control(
             'space_between',
             [
                 'label'    => esc_html__( 'Space Between' ),
@@ -356,7 +348,7 @@ class advance_slider extends \Elementor\Widget_Base {
 				],
             ]
         );
-  
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -383,7 +375,7 @@ class advance_slider extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control( 
+        $this->add_control(
            'image_height',
            [
                'label'    => esc_html__( 'Image Height' ),
@@ -635,7 +627,7 @@ class advance_slider extends \Elementor\Widget_Base {
 				],
             ]
         );
-        
+
         $this->end_controls_section();
 
         ///Additional Content Style Tab
@@ -730,14 +722,14 @@ class advance_slider extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function render()  { 
+    protected function render()  {
       $settings = $this->get_settings_for_display();
       $slides = $settings['slides'];
       $current_template = $this->templates[$settings['select_template']];
       ?>
        <div class="swiper-container quantum-swiper-container">
           <div class="swiper-wrapper">
-            <?php 
+            <?php
             foreach( $slides as $slide ) {
               $image = $slide['image'];
               $image_url = trim( $image['url'] );
