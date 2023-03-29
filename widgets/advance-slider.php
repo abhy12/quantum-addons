@@ -142,7 +142,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'   => esc_html__( 'Additonal Content' ),
             'type'    => \Elementor\Controls_Manager::WYSIWYG,
-            'default' => esc_html__( 'additional content...', 'plugin-name' ),
+            'default' => esc_html__( 'additional content...' ),
          ]
       );
 
@@ -174,7 +174,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'slide_per_view',
          [
-            'label'              => esc_html__( 'Slide Per View' ),
+            'label'              => esc_html__( 'Show Slides' ),
             'type'               => \Elementor\Controls_Manager::NUMBER,
             'frontend_available' => true,
             'desktop_default'    => 3,
@@ -186,7 +186,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'slide_per_group',
          [
-            'label'   => esc_html__( 'Slide Per Group' ),
+            'label'   => esc_html__( 'Slides per Swipe' ),
             'type'    => \Elementor\Controls_Manager::SELECT,
             'options' => [
                '1' => '1',
@@ -209,7 +209,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'center_slide',
          [
-            'label'   => esc_html__( 'Center Slides' ),
+            'label'   => esc_html__( 'Slides Centered' ),
             'type'    => \Elementor\Controls_Manager::SELECT,
             'options' => [
                '1' => 'Yes',
@@ -226,7 +226,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'space_between',
          [
-            'label'              => esc_html__( 'Space Between' ),
+            'label'              => esc_html__( 'Space Between Slides' ),
             'type'               => \Elementor\Controls_Manager::NUMBER,
             'desktop_default'    => 30,
             'tablet_default'     => 20,
@@ -238,7 +238,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'loop',
          [
-            'label'              => esc_html__( 'Infinite loop' ),
+            'label'              => esc_html__( 'Infinite Slides' ),
             'type'               => \Elementor\Controls_Manager::SWITCHER,
             'label_on'           => esc_html__( 'Yes' ),
             'label_off'          => esc_html__( 'No' ),
@@ -253,7 +253,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'container_style',
          [
-            'label' => esc_html__( 'Container' ),
+            'label' => esc_html__( 'Slides Container' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -313,7 +313,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Border::get_type(),
          [
             'name'     => 'border',
-            'label'    => esc_html__( 'Border', 'plugin-name' ),
+            'label'    => esc_html__( 'Border' ),
             'selector' => '{{WRAPPER}} .quantum-slide',
          ]
       );
@@ -322,7 +322,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Box_Shadow::get_type(),
          [
             'name'     => 'box_shadow',
-            'label'    => esc_html__( 'Box Shadow', 'plugin-name' ),
+            'label'    => esc_html__( 'Box Shadow' ),
             'selector' => '{{WRAPPER}} .quantum-slide',
          ]
       );
@@ -331,7 +331,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Background::get_type(),
          [
             'name'     => 'background',
-            'label'    => esc_html__( 'Background', 'plugin-name' ),
+            'label'    => esc_html__( 'Background' ),
             'types'    => ['classic', 'gradient'],
             'selector' => '{{WRAPPER}} .quantum-slide',
          ]
@@ -379,9 +379,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
          'image_height',
          [
             'label'     => esc_html__( 'Image Height' ),
-            'type'      => \Elementor\Controls_Manager::NUMBER,
+            'type'      => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px', '%', 'rem', 'em'],
+            'default'    => [
+               'unit' => 'px',
+               'size' => '250'
+            ],
             'selectors' => [
-               '{{WRAPPER}} .slider-image' => 'height: {{SIZE}}px;'
+               '{{WRAPPER}} .slider-image' => 'height: {{SIZE}}{{UNIT}};'
             ],
          ]
       );
@@ -392,11 +397,13 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'     => esc_html__( 'Object Fit' ),
             'type'      => \Elementor\Controls_Manager::SELECT,
             'options'   => [
-               'none'    => 'Default',
-               'cover'   => 'Cover',
-               'contain' => 'Contain',
-               'fill'    => 'Fill',
+               'cover'      => 'Cover',
+               'contain'    => 'Contain',
+               'fill'       => 'Fill',
+               'none'       => 'None',
+               'scale-down' => 'Scale down'
             ],
+            'default'   => 'cover',
             'selectors' => [
                '{{WRAPPER}} .slider-image'  => 'object-fit: {{VALUE}}'
             ],
@@ -411,8 +418,18 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'content_section',
          [
-            'label' => esc_html__( 'Content Container' ),
+            'label' => esc_html__( 'Slide Content Container' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+         ]
+      );
+
+      $this->add_group_control(
+         \Elementor\Group_Control_Background::get_type(),
+         [
+            'name'     => 'content_background',
+            'label'    => esc_html__( 'Background' ),
+            'types'    => ['classic', 'gradient'],
+            'selector' => '{{WRAPPER}} .el-quantum-content-container',
          ]
       );
 
@@ -441,11 +458,10 @@ class Advance_slider extends \Elementor\Widget_Base  {
       );
 
       $this->add_group_control(
-         \Elementor\Group_Control_Background::get_type(),
+         \Elementor\Group_Control_Border::get_type(),
          [
-            'name'     => 'content_background',
-            'label'    => esc_html__( 'Background', 'plugin-name' ),
-            'types'    => ['classic', 'gradient'],
+            'name'     => 'content-cotainer-border',
+            'label'    => esc_html__( 'Border' ),
             'selector' => '{{WRAPPER}} .el-quantum-content-container',
          ]
       );
@@ -463,7 +479,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'   => esc_html__( 'Title Typrography' ),
+            'label'   => esc_html__( 'Typrography' ),
             'name'     => 'content_typography',
             'selector' => '{{WRAPPER}} .el-quantum-title',
          ]
@@ -553,7 +569,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'    => esc_html__( 'Title Typrography' ),
+            'label'    => esc_html__( 'Typrography' ),
             'name'     => 'paragraph_typography',
             'selector' => '{{WRAPPER}} .el-quantum-content',
          ]
@@ -645,7 +661,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'    => esc_html__( 'Content Typrography' ),
+            'label'    => esc_html__( 'Typrography' ),
             'name'     => 'additional_typography',
             'selector' => '{{WRAPPER}} .el-quantum-add-content',
          ]
