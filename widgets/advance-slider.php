@@ -59,7 +59,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
    }
 
    public function get_title()  {
-      return esc_html__( 'Advance Slider' );
+      return esc_html__( 'Advance Slider', 'quantum-addons' );
    }
 
    public function get_icon()  {
@@ -91,7 +91,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'section_container',
          [
-            'label' => esc_html__( 'Content' ),
+            'label' => esc_html__( 'Content', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
          ]
       );
@@ -99,7 +99,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'select_template',
          [
-            'label'   => esc_html__( 'Select Template' ),
+            'label'   => esc_html__( 'Select Template', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::SELECT,
             'options' => $this->template_names,
             'default' => 'default'
@@ -111,7 +111,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $repeater->add_control(
          'image',
          [
-            'label'   => esc_html__( 'Image' ),
+            'label'   => esc_html__( 'Image', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::MEDIA,
             'default' => [
                'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -122,34 +122,34 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $repeater->add_control(
          'title',
          [
-            'label'       => esc_html__( 'Heading' ),
+            'label'       => esc_html__( 'Heading', 'quantum-addons' ),
             'type'        => \Elementor\Controls_Manager::TEXT,
-            'placeholder' =>  esc_html__( 'Write someting...' ),
+            'placeholder' =>  esc_html__( 'Write someting...', 'quantum-addons' ),
          ]
       );
 
       $repeater->add_control(
          'content',
          [
-            'label'       => esc_html__( 'Paragraph' ),
+            'label'       => esc_html__( 'Paragraph', 'quantum-addons' ),
             'type'        => \Elementor\Controls_Manager::TEXTAREA,
-            'placeholder' => esc_html__( 'Write someting...' ),
+            'placeholder' => esc_html__( 'Write someting...', 'quantum-addons' ),
          ]
       );
 
       $repeater->add_control(
          'additional_text',
          [
-            'label'   => esc_html__( 'Additonal Content' ),
+            'label'   => esc_html__( 'Additonal Content', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::WYSIWYG,
-            'default' => esc_html__( 'additional content...' ),
+            'default' => esc_html__( 'additional content...', 'quantum-addons' ),
          ]
       );
 
       $this->add_control(
          'slides',
          [
-            'label'   => esc_html__( 'Slides' ),
+            'label'   => esc_html__( 'Slides', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::REPEATER,
             'fields'  => $repeater->get_controls(),
             'default' => [
@@ -166,7 +166,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'slider-options',
          [
-            'label' => esc_html__( 'Slider Options' ),
+            'label' => esc_html__( 'Slider Options', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
          ]
       );
@@ -174,7 +174,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'slide_per_view',
          [
-            'label'              => esc_html__( 'Show Slides' ),
+            'label'              => esc_html__( 'Show Slides', 'quantum-addons' ),
             'type'               => \Elementor\Controls_Manager::NUMBER,
             'frontend_available' => true,
             'desktop_default'    => 3,
@@ -186,7 +186,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'slide_per_group',
          [
-            'label'   => esc_html__( 'Slides per Swipe' ),
+            'label'   => esc_html__( 'Slides per Swipe', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::SELECT,
             'options' => [
                '1' => '1',
@@ -209,7 +209,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'center_slide',
          [
-            'label'   => esc_html__( 'Slides Centered' ),
+            'label'   => esc_html__( 'Slides Centered', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::SELECT,
             'options' => [
                '1' => 'Yes',
@@ -226,7 +226,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'space_between',
          [
-            'label'              => esc_html__( 'Space Between Slides' ),
+            'label'              => esc_html__( 'Space Between Slides', 'quantum-addons' ),
             'type'               => \Elementor\Controls_Manager::NUMBER,
             'desktop_default'    => 30,
             'tablet_default'     => 20,
@@ -238,10 +238,10 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'loop',
          [
-            'label'              => esc_html__( 'Infinite Slides' ),
+            'label'              => esc_html__( 'Infinite Slides', 'quantum-addons' ),
             'type'               => \Elementor\Controls_Manager::SWITCHER,
-            'label_on'           => esc_html__( 'Yes' ),
-            'label_off'          => esc_html__( 'No' ),
+            'label_on'           => esc_html__( 'Yes', 'quantum-addons' ),
+            'label_off'          => esc_html__( 'No', 'quantum-addons' ),
             'return_value'       => '1',
             'default'            => '1',
             'frontend_available' => true,
@@ -253,7 +253,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'container_style',
          [
-            'label' => esc_html__( 'Slides Container' ),
+            'label' => esc_html__( 'Slides Container', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -261,7 +261,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'container_overflow',
          [
-            'label'     => esc_html__( 'Overflow' ),
+            'label'     => esc_html__( 'Overflow', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::SELECT,
             'default'   => 'hidden',
             'options'   => [
@@ -277,10 +277,10 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'container_padding',
          [
-            'label'       => esc_html__( 'Padding' ),
+            'label'       => esc_html__( 'Padding', 'quantum-addons' ),
             'type'        => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units'  => ['px', 'rem' ,'em', '%'],
-            'description' => esc_html__( 'Note: if you change padding you may want to reload the browser (if slider not working properly)' ),
+            'description' => esc_html__( 'Note: if you change padding you may want to reload the browser (if slider not working properly)', 'quantum-addons' ),
             'selectors'   => [
                '{{WRAPPER}} .quantum-swiper-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
@@ -290,7 +290,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'container_margin',
          [
-            'label'      => esc_html__( 'Margin' ),
+            'label'      => esc_html__( 'Margin', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -304,7 +304,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'slide_style',
          [
-            'label' => esc_html__( 'Slide' ),
+            'label' => esc_html__( 'Slide', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -313,7 +313,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Border::get_type(),
          [
             'name'     => 'border',
-            'label'    => esc_html__( 'Border' ),
+            'label'    => esc_html__( 'Border', 'quantum-addons' ),
             'selector' => '{{WRAPPER}} .quantum-slide',
          ]
       );
@@ -322,7 +322,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Box_Shadow::get_type(),
          [
             'name'     => 'box_shadow',
-            'label'    => esc_html__( 'Box Shadow' ),
+            'label'    => esc_html__( 'Box Shadow', 'quantum-addons' ),
             'selector' => '{{WRAPPER}} .quantum-slide',
          ]
       );
@@ -331,7 +331,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Background::get_type(),
          [
             'name'     => 'background',
-            'label'    => esc_html__( 'Background' ),
+            'label'    => esc_html__( 'Background', 'quantum-addons' ),
             'types'    => ['classic', 'gradient'],
             'selector' => '{{WRAPPER}} .quantum-slide',
          ]
@@ -340,7 +340,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'slide_padding',
          [
-            'label'      => esc_html__( 'Padding' ),
+            'label'      => esc_html__( 'Padding', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -378,7 +378,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'image_height',
          [
-            'label'     => esc_html__( 'Image Height' ),
+            'label'     => esc_html__( 'Image Height', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'rem', 'em'],
             'default'    => [
@@ -394,7 +394,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'object-fit',
          [
-            'label'     => esc_html__( 'Object Fit' ),
+            'label'     => esc_html__( 'Object Fit', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::SELECT,
             'options'   => [
                'cover'      => 'Cover',
@@ -418,7 +418,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'content_section',
          [
-            'label' => esc_html__( 'Slide Content Container' ),
+            'label' => esc_html__( 'Slide Content Container', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -427,7 +427,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Background::get_type(),
          [
             'name'     => 'content_background',
-            'label'    => esc_html__( 'Background' ),
+            'label'    => esc_html__( 'Background', 'quantum-addons' ),
             'types'    => ['classic', 'gradient'],
             'selector' => '{{WRAPPER}} .el-quantum-content-container',
          ]
@@ -436,7 +436,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'content_padding',
          [
-            'label'      => esc_html__( 'Padding ' ),
+            'label'      => esc_html__( 'Padding', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -448,7 +448,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'content_margin',
          [
-            'label'      => esc_html__( 'Margin' ),
+            'label'      => esc_html__( 'Margin', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -461,7 +461,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          \Elementor\Group_Control_Border::get_type(),
          [
             'name'     => 'content-cotainer-border',
-            'label'    => esc_html__( 'Border' ),
+            'label'    => esc_html__( 'Border', 'quantum-addons' ),
             'selector' => '{{WRAPPER}} .el-quantum-content-container',
          ]
       );
@@ -471,7 +471,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'heading_style',
          [
-            'label' => esc_html__( 'Heading' ),
+            'label' => esc_html__( 'Heading', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -479,7 +479,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'   => esc_html__( 'Typrography' ),
+            'label'   => esc_html__( 'Typrography', 'quantum-addons' ),
             'name'     => 'content_typography',
             'selector' => '{{WRAPPER}} .el-quantum-title',
          ]
@@ -492,14 +492,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_tab(
          'heading_style_normal',
          [
-            'label' => esc_html__( 'Normal' ),
+            'label' => esc_html__( 'Normal', 'quantum-addons' ),
          ]
       );
 
       $this->add_control(
          'heading_normal_color',
          [
-            'label'     => esc_html__( 'Text Color' ),
+            'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => '#333',
             'selectors' => [
@@ -513,14 +513,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_tab(
          'heading_style_hover',
          [
-            'label' => esc_html__( 'Hover' ),
+            'label' => esc_html__( 'Hover', 'quantum-addons' ),
          ]
       );
 
       $this->add_control(
          'heading_hover_color',
          [
-            'label'     => esc_html__( 'Text Color' ),
+            'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .el-quantum-title:hover' => 'color: {{VALUE}}',
@@ -535,7 +535,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'title_padding',
          [
-            'label'      => esc_html__( 'Padding ' ),
+            'label'      => esc_html__( 'Padding', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => [ 'px', 'rem' ,'em', '%' ],
             'selectors'  => [
@@ -547,7 +547,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'title_margin',
          [
-            'label'      => esc_html__( 'Margin' ),
+            'label'      => esc_html__( 'Margin', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -561,7 +561,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'paragraph_style',
          [
-            'label' => esc_html__( 'Paragraph' ),
+            'label' => esc_html__( 'Paragraph', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -569,7 +569,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'    => esc_html__( 'Typrography' ),
+            'label'    => esc_html__( 'Typrography', 'quantum-addons' ),
             'name'     => 'paragraph_typography',
             'selector' => '{{WRAPPER}} .el-quantum-content',
          ]
@@ -582,14 +582,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_tab(
          'paragraph_style_normal',
          [
-            'label' => esc_html__( 'Normal' ),
+            'label' => esc_html__( 'Normal', 'quantum-addons' ),
          ]
       );
 
       $this->add_control(
          'paragraph_normal_color',
          [
-            'label'     => esc_html__( 'Text Color' ),
+            'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => '#5C5C5C',
             'selectors' => [
@@ -603,14 +603,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_tab(
          'paragraph_style_hover',
          [
-            'label' => esc_html__( 'Hover' ),
+            'label' => esc_html__( 'Hover', 'quantum-addons' ),
          ]
       );
 
       $this->add_control(
          'paragraph_hover_color',
          [
-            'label'     => esc_html__( 'Text Color' ),
+            'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .el-quantum-content:hover' => 'color: {{VALUE}}',
@@ -625,7 +625,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'paragraph_padding',
          [
-            'label'      => esc_html__( 'Padding ' ),
+            'label'      => esc_html__( 'Padding', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -637,7 +637,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'paragraph_margin',
          [
-            'label'      => esc_html__( 'Margin' ),
+            'label'      => esc_html__( 'Margin', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -653,7 +653,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'additional_style',
          [
-            'label' => esc_html__( 'Additional Content' ),
+            'label' => esc_html__( 'Additional Content', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -661,7 +661,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'    => esc_html__( 'Typrography' ),
+            'label'    => esc_html__( 'Typrography', 'quantum-addons' ),
             'name'     => 'additional_typography',
             'selector' => '{{WRAPPER}} .el-quantum-add-content',
          ]
@@ -674,14 +674,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_tab(
          'additional_style_normal',
          [
-            'label' => esc_html__( 'Normal' ),
+            'label' => esc_html__( 'Normal', 'quantum-addons' ),
          ]
       );
 
       $this->add_control(
          'additional_normal_color',
          [
-            'label'     => esc_html__( 'Text Color' ),
+            'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => '#eee',
             'selectors' => [
@@ -695,14 +695,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_tab(
          'additional_style_hover',
          [
-            'label' => esc_html__( 'Hover' ),
+            'label' => esc_html__( 'Hover', 'quantum-addons' ),
          ]
       );
 
       $this->add_control(
          'additional_hover_color',
          [
-            'label'     => esc_html__( 'Text Color' ),
+            'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .el-quantum-add-content:hover' => 'color: {{VALUE}}',
@@ -717,7 +717,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'additional_padding',
          [
-            'label'      => esc_html__( 'Padding' ),
+            'label'      => esc_html__( 'Padding', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
@@ -729,7 +729,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'additional_margin',
          [
-            'label'      => esc_html__( 'Margin' ),
+            'label'      => esc_html__( 'Margin', 'quantum-addons' ),
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
