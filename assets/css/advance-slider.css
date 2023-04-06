@@ -5,3 +5,22 @@
 .quantum-swiper-container .swiper-slide{
     height: unset;
 }
+.quantum-swiper-container .quantum-slider-btn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+}
+.quantum-swiper-container .quantum-slider-btn.quantum-prev-btn{
+    left: 0;
+}
+.quantum-swiper-container .quantum-slider-btn.quantum-next-btn{
+    right: 0;
+}
+.quantum-slider-btn{
+    padding: 13px 25px;
+    border-radius: 0;
+}
+.quantum-swiper-container .quantum-slider-pagination .swiper-pagination-bullet{
+    opacity: 1;
+}

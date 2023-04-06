@@ -40,10 +40,31 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
       const desktopCenterSlides = +settings['center_slide'] ? true : false;
       const desktopSpaceBetween = +settings['space_between'];
       const desktopSlidePerGroup = +settings['slide_per_group'];
+      const isPaginationClickable = settings['is_pagination_clickable'] === 'yes' ? true : false;
+      const paginationType = settings['pagination_type'];
+      const isScrollbarDraggable = settings['is_scrollbar_draggable'] === 'yes' ? true : false;
 
+      let customNextBtn = settings['custom_navigation_next_button_selector'];
+      let customPrevBtn = settings['custom_navigation_prev_button_selector'];
+      let customPagination = settings['custom_pagination_selector'];
+      let customScrollbar = settings['custom_scrollbar_selector'];
 
-      ///default config for swiper
-      const swiperConfig =  {
+      if( typeof customNextBtn === 'string' )  customNextBtn = customNextBtn.trim();
+
+      if( typeof customPrevBtn === 'string' )  customPrevBtn = customPrevBtn.trim();
+
+      if( typeof customPagination === 'string' )  customPagination = customPagination.trim();
+
+      if( typeof customScrollbar === 'string' )  customScrollbar = customScrollbar.trim();
+
+      ///add swiper scrollbar css class to custom scrollbar
+      if( customScrollbar )  {
+         const scrollbarEl = document.querySelector( customScrollbar );
+         if( scrollbarEl )  scrollbarEl.classList.add( 'swiper-scrollbar' );
+      }
+
+      ///basic swiper config
+      const swiperConfig = {
          direction: "horizontal",
          loop: settings["loop"] ? true : false,
          slidesPerView: desktopSlideToShow,
@@ -51,17 +72,20 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
          spaceBetween: desktopSpaceBetween,
          slidesPerGroup: desktopSlidePerGroup,
          pagination: {
-            el: ".swiper-pagination",
+            el: customPagination ? customPagination : ".swiper-pagination",
+            clickable: isPaginationClickable,
+            type: paginationType,
          },
          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: customNextBtn ? customNextBtn : '.quantum-next-btn',
+            prevEl: customPrevBtn ? customPrevBtn : '.quantum-prev-btn',
          },
          scrollbar: {
-            el: ".swiper-scrollbar",
+            el: customScrollbar ? customScrollbar : ".swiper-scrollbar",
+            draggable: isScrollbarDraggable,
          },
          breakpoints: {},
-         ///i saw this code in Elementor source code and this seems to 
+         ///i saw this code in Elementor source code and this seems to
          ///"correct" the breakpoints according to swiper breakpoints
          handleElementorBreakpoints: true,
       }

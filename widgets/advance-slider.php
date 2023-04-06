@@ -251,6 +251,278 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->end_controls_section();
 
       $this->start_controls_section(
+         'navigation_controls_options',
+         [
+            'label' => esc_html__( 'Navigation Controls', 'quantum-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+         ]
+      );
+
+      $this->add_responsive_control(
+         'show_navigation_next_prev_controls',
+         [
+            'label'           => esc_html__( 'Next & Previous Controls', 'quantum-addons' ),
+            'type'            => \ELEMENTOR\Controls_Manager::SELECT,
+            'default'         => '',
+            'options'         => [
+               ''     => esc_html__( 'Show', 'quantum-addons' ),
+               'none' => esc_html__( 'Hide', 'quantum-addons' ),
+            ],
+            'selectors'       => [
+               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn' => 'display: {{VALUE}};',
+            ],
+            'condition'       => [
+               'is_custom_navigation_buttons' => ''
+            ],
+         ]
+      );
+
+      $this->add_responsive_control(
+         'navigation_buttons_icon_size',
+         [
+            'label'      => 'Icon Size',
+            'type'       => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px', 'rem', 'em'],
+            'default'    => [
+               'unit' => 'rem',
+               'size' => '1.2'
+            ],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-slider-btn' => 'font-size: {{SIZE}}{{UNIT}};'
+            ],
+            'condition' => [
+               'is_custom_navigation_buttons' => ''
+            ]
+         ]
+      );
+
+      $this->add_control(
+         'navigation_control_prev_icon',
+         [
+            'label'     => esc_html__( 'Previous Control Icon', 'quantum-addons' ),
+            'type'      => \ELEMENTOR\Controls_Manager::ICONS,
+            'skin'      => 'media',
+            'default'   => [
+               'value'   => 'fas fa-chevron-left',
+               'library' => 'fa-solid',
+            ],
+            'condition' => [
+               'is_custom_navigation_buttons' => ''
+            ]
+         ]
+      );
+
+      $this->add_control(
+         'navigation_control_next_icon',
+         [
+            'label'     => esc_html__( 'Next Control Icon', 'quantum-addons' ),
+            'type'      => \ELEMENTOR\Controls_Manager::ICONS,
+            'skin'      => 'media',
+            'default'   => [
+               'value'   => 'fas fa-chevron-right',
+               'library' => 'fa-solid',
+            ],
+            'condition' => [
+               'is_custom_navigation_buttons' => ''
+            ]
+         ]
+      );
+
+      $this->add_control(
+         'is_custom_navigation_buttons',
+         [
+            'label'     => esc_html__( 'Custom Controls', 'quantum-addons' ),
+            'type'      => \ELEMENTOR\Controls_Manager::SWITCHER,
+            'label_on'  => 'Custom',
+            'label_off' => 'Default',
+            'default'   => '',
+         ]
+      );
+
+      $this->add_control(
+         'custom_navigation_prev_button_selector',
+         [
+            'label'              => esc_html__( 'Previous Control Selector', 'quantum-addons' ),
+            'type'               => \ELEMENTOR\Controls_Manager::TEXT,
+            'description'        => esc_html__( 'Input CSS selector eg: .custom-prev-btn or #custom-prev-btn', 'quantum-addons' ),
+            'placeholder'        => esc_html__( '.custom-prev-btn', 'quantum-addons' ),
+            'label_block'        => true,
+            'condition'          => [
+               'is_custom_navigation_buttons' => 'yes'
+            ],
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->add_control(
+         'custom_navigation_next_button_selector',
+         [
+            'label'              => esc_html__( 'Next Control Selector', 'quantum-addons' ),
+            'type'               => \ELEMENTOR\Controls_Manager::TEXT,
+            'description'        => esc_html__( 'Input CSS selector eg: .custom-next-btn or #custom-next-btn', 'quantum-addons' ),
+            'placeholder'        => esc_html__( '.custom-next-btn', 'quantum-addons' ),
+            'label_block'        => true,
+            'condition'          => [
+               'is_custom_navigation_buttons' => 'yes'
+            ],
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->end_controls_section();
+
+      $this->start_controls_section(
+         'pagination_options',
+         [
+            'label' => esc_html__( 'Pagination', 'quantum-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+         ]
+      );
+
+      $this->add_responsive_control(
+         'show_pagination',
+         [
+            'label'           => esc_html__( 'Pagination', 'quantum-addons' ),
+            'type'            => \ELEMENTOR\Controls_Manager::SELECT,
+            'default'         => '',
+            'options'         => [
+               ''     => esc_html__( 'Show', 'quantum-addons' ),
+               'none' => esc_html__( 'Hide', 'quantum-addons' ),
+            ],
+            'selectors'       => [
+               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-pagination' => 'display: {{VALUE}};',
+            ],
+            'condition'       => [
+               'is_custom_pagination' => ''
+            ]
+         ]
+      );
+
+      $this->add_control(
+         'is_custom_pagination',
+         [
+            'label'     => esc_html__( 'Custom Pagination', 'quantum-addons' ),
+            'type'      => \ELEMENTOR\Controls_Manager::SWITCHER,
+            'label_on'  => 'Custom',
+            'label_off' => 'Default',
+            'default'   => '',
+         ]
+      );
+
+      $this->add_control(
+         'custom_pagination_selector',
+         [
+            'label'              => esc_html__( 'Custom Pagination Selector', 'quantum-addons' ),
+            'type'               => \ELEMENTOR\Controls_Manager::TEXT,
+            'description'        => esc_html__( 'Input CSS selector eg: .custom-pagination or #custom-pagination', 'quantum-addons' ),
+            'placeholder'        => esc_html__( '.custom-pagination', 'quantum-addons' ),
+            'label_block'        => true,
+            'condition'          => [
+               'is_custom_pagination' => 'yes'
+            ],
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->add_control(
+         'is_pagination_clickable',
+         [
+            'label'              => esc_html__( 'Clickable', 'quantum-addons' ),
+            'type'               => \ELEMENTOR\Controls_Manager::SWITCHER,
+            'separator'          => 'before',
+            'label_on'           => 'Yes',
+            'label_off'          => 'No',
+            'default'            => 'Yes',
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->add_control(
+         'pagination_type',
+         [
+            'label'              => esc_html__( 'Pagination type', 'quantum-addons' ),
+            'type'               => \ELEMENTOR\Controls_Manager::SELECT,
+            'default'            => 'bullets',
+            'options'            => [
+               'bullets'     => esc_html__( 'Dots', 'quantum-addons' ),
+               'fraction'    => esc_html__( 'Numbers', 'quantum-addons' ),
+               'progressbar' => esc_html__( 'Progressbar', 'quantum-addons' ),
+            ],
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->end_controls_section();
+
+      $this->start_controls_section(
+         'pagination_scrollbar_options',
+         [
+            'label' => esc_html__( 'Scrollbar', 'quantum-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+         ]
+      );
+
+      $this->add_responsive_control(
+         'show_pagination_scrollbar',
+         [
+            'label'           => esc_html__( 'Pagination Scrollbar', 'quantum-addons' ),
+            'type'            => \ELEMENTOR\Controls_Manager::SELECT,
+            'default'         => '',
+            'options'         => [
+               ''     => esc_html__( 'Show', 'quantum-addons' ),
+               'none' => esc_html__( 'Hide', 'quantum-addons' ),
+            ],
+            'selectors'       => [
+               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-scrollbar' => 'display: {{VALUE}};',
+            ],
+            'condition'       => [
+               'is_custom_scrollbar' => ''
+            ]
+         ]
+      );
+
+      $this->add_control(
+         'is_custom_scrollbar',
+         [
+            'label'     => esc_html__( 'Custom Scrollbar', 'quantum-addons' ),
+            'type'      => \ELEMENTOR\Controls_Manager::SWITCHER,
+            'label_on'  => 'Custom',
+            'label_off' => 'Default',
+            'default'   => '',
+         ]
+      );
+
+      $this->add_control(
+         'custom_scrollbar_selector',
+         [
+            'label'              => esc_html__( 'Custom Scrollbar Selector', 'quantum-addons' ),
+            'type'               => \ELEMENTOR\Controls_Manager::TEXT,
+            'description'        => esc_html__( 'Input CSS selector eg: .custom-scrollbar or #custom-scrollbar', 'quantum-addons' ),
+            'placeholder'        => esc_html__( '.custom-scrollbar', 'quantum-addons' ),
+            'label_block'        => true,
+            'condition'          => [
+               'is_custom_scrollbar' => 'yes'
+            ],
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->add_control(
+         'is_scrollbar_draggable',
+         [
+            'label'              => esc_html__( 'Draggable', 'quantum-addons' ),
+            'type'               => \ELEMENTOR\Controls_Manager::SWITCHER,
+            'separator'          => 'before',
+            'label_on'           => 'Yes',
+            'label_off'          => 'No',
+            'default'            => 'Yes',
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->end_controls_section();
+
+      $this->start_controls_section(
          'container_style',
          [
             'label' => esc_html__( 'Slides Container', 'quantum-addons' ),
@@ -739,6 +1011,431 @@ class Advance_slider extends \Elementor\Widget_Base  {
       );
 
       $this->end_controls_section();
+
+      $this->start_controls_section(
+         'style_navigation_controls',
+         [
+            'label' => esc_html__( 'Navigation Controls', 'quantum-addons' ),
+            'tab'   => \ELEMENTOR\Controls_Manager::TAB_STYLE
+         ]
+      );
+
+      $this->add_group_control(
+         \Elementor\Group_Control_Border::get_type(),
+         [
+            'name'     => 'style_navigation_controls_border',
+            'exclude'  => ['color'],
+            'selector' => '{{WRAPPER}} .quantum-slider-btn',
+         ]
+      );
+
+      $this->add_group_control(
+         \Elementor\Group_Control_Box_Shadow::get_type(),
+         [
+            'name'     => 'navigation_controls_box_shadow',
+            'label'    => esc_html__( 'Box Shadow', 'quantum-addons' ),
+            'selector' => '{{WRAPPER}} .quantum-slider-btn',
+         ]
+      );
+
+      $this->start_controls_tabs( 'style_navigation_controls_colors_tab' );
+
+      $this->start_controls_tab(
+         'style_navigation_controls_normal_colors_tab',
+         [
+            'label' => esc_html__( 'Normal', 'quantum-addons' ),
+         ]
+      );
+
+      $this->add_control(
+         'style_navigation_controls_normal_icon_color',
+         [
+            'label'     => esc_html__( 'Icon color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'default'   => '#fff',
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-btn' => 'color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_navigation_controls_normal_background_color',
+         [
+            'label'     => esc_html__( 'Background color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'default'   => '#19A7CE',
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-btn' => 'background-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_navigation_controls_normal_border_color',
+         [
+            'label'     => esc_html__( 'Border color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-btn' => 'border-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->end_controls_tab();
+
+      $this->start_controls_tab(
+         'style_navigation_controls_hover_colors_tab',
+         [
+            'label' => esc_html__( 'Hover', 'quantum-addons' ),
+         ]
+      );
+
+      $this->add_control(
+         'style_navigation_controls_hover_icon_color',
+         [
+            'label'     => esc_html__( 'Icon color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-btn:hover' => 'color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_navigation_controls_hover_background_color',
+         [
+            'label'     => esc_html__( 'Background color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'default'   => '#3A98B9',
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-btn:hover' => 'background-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_navigation_controls_hover_border_color',
+         [
+            'label'     => esc_html__( 'Border color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-btn:hover' => 'border-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->end_controls_tab();
+
+      $this->end_controls_tabs();
+
+      $this->add_responsive_control(
+         'style_navigation_controls_padding',
+         [
+            'label'      => esc_html__( 'Padding', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'separator'  => 'before',
+            'size_units' => ['px', 'rem' ,'em', '%'],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-slider-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+         ]
+      );
+
+      $this->add_responsive_control(
+         'style_navigation_controls_border_radius',
+         [
+            'label'      => esc_html__( 'Border Radius', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', 'rem' ,'em', '%'],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-slider-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+         ]
+      );
+
+      $this->end_controls_section();
+
+      $this->start_controls_section(
+         'style_pagination',
+         [
+            'label' => esc_html__( 'Pagination', 'quantum-addons' ),
+            'tab'   => \ELEMENTOR\Controls_Manager::TAB_STYLE
+         ]
+      );
+
+      $this->add_control(
+			'style_pagination_horizontal_alignment',
+			[
+				'label' => esc_html__( 'Alignment', 'quantum-addons' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'quantum-addons' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'quantum-addons' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'quantum-addons' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .quantum-slider-pagination' => 'text-align: {{VALUE}};',
+				],
+            'condition' => [
+               'pagination_type!' => 'progressbar',
+            ],
+			]
+		);
+
+      $this->add_group_control(
+         \Elementor\Group_Control_Border::get_type(),
+         [
+            'name'     => 'style_pagination_dots_border',
+            'exclude'  => ['color'],
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selector' => '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet',
+         ]
+      );
+
+      $this->add_responsive_control(
+         'style_pagination_dots_border_radius',
+         [
+            'label'      => esc_html__( 'Border Radius', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', 'rem' ,'em', '%'],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+         ]
+      );
+
+      $this->add_group_control(
+         \Elementor\Group_Control_Box_Shadow::get_type(),
+         [
+            'name'     => 'style_pagination_dots_box_shadow',
+            'label'    => esc_html__( 'Box Shadow', 'quantum-addons' ),
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selector' => '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet',
+         ]
+      );
+
+      $this->start_controls_tabs( 'style_pagination_dots_colors_tab' );
+
+      $this->start_controls_tab(
+         'style_pagination_dots_normal_colors_tab',
+         [
+            'label' => esc_html__( 'Normal', 'quantum-addons' ),
+         ]
+      );
+
+      $this->add_control(
+         'style_pagination_dots_normal_border_color',
+         [
+            'label'     => esc_html__( 'Border color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'border-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_pagination_dots_normal_background_color',
+         [
+            'label'     => esc_html__( 'Background color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'default'   => '#00000061',
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->end_controls_tab();
+
+      $this->start_controls_tab(
+         'style_pagination_dots_hover_colors_tab',
+         [
+            'label' => esc_html__( 'Hover', 'quantum-addons' ),
+         ]
+      );
+
+      $this->add_control(
+         'style_pagination_dots_hover_border_color',
+         [
+            'label'     => esc_html__( 'Border color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet:hover' => 'border-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_pagination_dots_hover_background_color',
+         [
+            'label'     => esc_html__( 'Background color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet:hover' => 'background-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->end_controls_tab();
+
+      $this->start_controls_tab(
+         'style_pagination_dots_active_colors_tab',
+         [
+            'label' => esc_html__( 'Active', 'quantum-addons' ),
+         ]
+      );
+
+      $this->add_control(
+         'style_pagination_dots_active_border_color',
+         [
+            'label'     => esc_html__( 'Border color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'border-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_pagination_dots_active_background_color',
+         [
+            'label'     => esc_html__( 'Background color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'default'   => '#000',
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'background-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->end_controls_tab();
+
+      $this->end_controls_tabs();
+
+      $this->add_responsive_control(
+         'style_pagination_dots_size',
+         [
+            'label'      => 'Icon Size',
+            'type'       => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px', 'rem', 'em'],
+            'default'    => [
+               'unit' => 'px',
+               'size' => '6'
+            ],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};'
+            ],
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+         ]
+      );
+
+      $this->add_responsive_control(
+         'style_pagination_dots_space',
+         [
+            'label'      => esc_html__( 'Space Between', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px', 'rem', 'em'],
+            'default'    => [
+               'unit' => 'px',
+               'size' => '4'
+            ],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => '--swiper-pagination-bullet-horizontal-gap: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [
+               'pagination_type' => 'bullets',
+            ],
+         ]
+      );
+
+      $this->end_controls_section();
+
+      $this->start_controls_section(
+         'style_scrollbar',
+         [
+            'label' => esc_html__( 'Scrollbar', 'quantum-addons' ),
+            'tab'   => \ELEMENTOR\Controls_Manager::TAB_STYLE
+         ]
+      );
+
+      $this->add_control(
+         'style_scrollbar_background_color',
+         [
+            'label'     => esc_html__( 'Background color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'default'   => 'rgba(0, 0, 0, 0.1)',
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-scrollbar' => 'background-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_control(
+         'style_scrollbar_moveable_element_background_color',
+         [
+            'label'     => esc_html__( 'Moveable Scrollbar Background color', 'quantum-addons' ),
+            'type'      => \Elementor\Controls_Manager::COLOR,
+            'default'   => 'rgba(0, 0, 0, 0.5)',
+            'selectors' => [
+               '{{WRAPPER}} .quantum-slider-scrollbar .swiper-scrollbar-drag' => 'background-color: {{VALUE}}',
+            ],
+         ]
+      );
+
+      $this->add_responsive_control(
+         'style_scrollbar_border_radius',
+         [
+            'label'      => esc_html__( 'Border Radius', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', 'rem' ,'em', '%'],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-slider-scrollbar' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .quantum-slider-scrollbar .swiper-scrollbar-drag' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+         ]
+      );
+
+      $this->end_controls_section();
    }
 
    protected function render()  {
@@ -774,10 +1471,23 @@ class Advance_slider extends \Elementor\Widget_Base  {
             }
             ?>
          </div>
-         <div class="swiper-pagination"></div>
-         <div class="swiper-button-prev"></div>
-         <div class="swiper-button-next"></div>
-         <div class="swiper-scrollbar"></div>
+         <?php
+         if( isset( $settings['is_custom_pagination'] ) && $settings['is_custom_pagination'] === '' )  { ?>
+            <div class="quantum-slider-pagination swiper-pagination"></div>
+         <?php }
+
+         if( isset( $settings['is_custom_navigation_buttons'] ) && $settings['is_custom_navigation_buttons'] === '' )  { ?>
+            <button class="quantum-slider-btn quantum-prev-btn">
+               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_control_prev_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+            </button>
+            <button class="quantum-slider-btn quantum-next-btn">
+               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_control_next_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+            </button>
+         <?php }
+
+         if( isset( $settings['is_custom_scrollbar'] ) && $settings['is_custom_scrollbar'] === '' )  { ?>
+            <div class="quantum-slider-scrollbar swiper-scrollbar"></div>
+         <?php } ?>
       </div>
       <?php
    }
