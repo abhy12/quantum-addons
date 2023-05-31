@@ -4,54 +4,31 @@ if( !defined( 'ABSPATH' ) )  {
 	exit; // Exit if accessed directly.
 }
 
+require_once( QUANTUM_DIR . "functions.php" );
+
 define( "VESRION", time() );
 
 class Advance_slider extends \Elementor\Widget_Base  {
-   public $templates = [], $template_names = [];
-   public $theme_template_path;
+   public $slides_templates = [], $slides_template_names = [];
+   ///not initializing here because it giving me some error
+   public $template_paths = [];
 
    public function __construct( $data = [], $args = null )  {
       parent::__construct( $data, $args );
       wp_register_script( 'advance-slider-script', plugins_url( 'assets/js/advance-slider.js', __DIR__ ), ['jquery', 'elementor-frontend'], VESRION, true );
       wp_register_style( 'advance-slider-styles', plugins_url( 'assets/css/advance-slider.css', __DIR__ ), null, VESRION );
 
-      $this->theme_template_path = get_stylesheet_directory() . '/quantum-addons/advance-slider';
+      $this->template_paths = [QUANTUM_DIR . "/templates/advance-slider", get_stylesheet_directory() . "/quantum-addons/advance-slider"];
       $this->init_templates();
    }
 
    public function init_templates()  {
-      $this->templates['default'] = $this->get_default_template();
-      $this->template_names['default'] = 'Default';
+      $this->slides_templates = quantum_addons_get_templates( $this->template_paths, "html" );
 
-      if( file_exists( $this->theme_template_path ) && is_dir( $this->theme_template_path ) && is_readable( $this->theme_template_path ) )  {
-         $files = array_filter( glob( $this->theme_template_path.'/*.html*' ), 'is_file' );
-
-         foreach( $files as $file )  {
-            $file_name = basename( $file, '.html' );
-            $file_name = ucfirst( trim( preg_replace( '/[-_]/', ' ', $file_name  ) ) );
-            $template = file_get_contents( $file );
-            $this->templates[$file_name] = $template;
-            $this->template_names[$file_name] = $file_name;
-         }
+      foreach( $this->slides_templates as $template_key_name => $_ )  {
+         $template_name = ucfirst( preg_replace( '/[-]/', " " ,$template_key_name ) );
+         $this->slides_template_names[$template_key_name] = $template_name;
       }
-   }
-
-   public function get_default_template()  {
-      $template = <<<'Template'
-      <div class="swiper-slide quantum-slide">
-         <img class="slider-image" src="{{Image.src}}" alt="{{Image.alt}}">
-         <div class="el-quantum-content-container">
-            <h3 class="el-quantum-title">{{Title}}</h3>
-            <p class="el-quantum-content">{{Paragraph}}</p>
-            <p class="el-quantum-add-content">{{Additional_content}}</p>
-         </div>
-      </div>
-      Template;
-      return $template;
-   }
-
-   public function get_template_tags()  {
-      return ['Image\.src', 'Image\.alt', 'Title', 'Paragraph', 'Additional_content'];
    }
 
    public function get_name()  {
@@ -101,7 +78,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'   => esc_html__( 'Select Template', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::SELECT,
-            'options' => $this->template_names,
+            'options' => $this->slides_template_names,
             'default' => 'default'
          ],
       );
@@ -1441,7 +1418,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
    protected function render()  {
       $settings = $this->get_settings_for_display();
       $slides = $settings['slides'];
-      $current_template = $this->templates[$settings['select_template']];
+      $current_template = $this->slides_templates[$settings['select_template']];
       ?>
       <div class="swiper-container quantum-swiper-container">
          <div class="swiper-wrapper">
@@ -1458,15 +1435,12 @@ class Advance_slider extends \Elementor\Widget_Base  {
                $slide_add = trim( $slide['additional_text'] );
                if( isset( $current_template ) )  {
                   $temp_template = $current_template;
-                  // foreach( $this->get_template_tags() as $tag )  {
-                  //   $current_template = preg_replace( "/{{$tag}}/", $image_url, $current_template );
-                  // }
-                  $temp_template = preg_replace( "/{{Image\.src}}/", $image_url, $temp_template );
-                  $temp_template = preg_replace( '/{{Image\.alt}}/', $image_alt, $temp_template );
-                  $temp_template = preg_replace( '/{{Title}}/', $slide_title, $temp_template );
-                  $temp_template = preg_replace( '/{{Paragraph}}/', $slide_para, $temp_template );
-                  $temp_template = preg_replace( '/{{Additional_content}}/', $slide_add, $temp_template );
-                  echo $temp_template;
+                  $temp_template = preg_replace( "/{{Image\.url}}/", $image_url, $temp_template );
+                  $temp_template = preg_replace( "/{{Image\.alt}}/", $image_alt, $temp_template );
+                  $temp_template = preg_replace( "/{{Title}}/", $slide_title, $temp_template );
+                  $temp_template = preg_replace( "/{{Paragraph}}/", $slide_para, $temp_template );
+                  $temp_template = preg_replace( "/{{Additional_content}}/", $slide_add, $temp_template );
+                  echo '<div class="swiper-slide quantum-slide">' . $temp_template . '</div>';
                }
             }
             ?>
