@@ -21,7 +21,6 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
 
    async initSwiper( el )  {
       let swiperConfig = this.getSwiperConfig();
-      console.log( swiperConfig );
 
       /// Swiper elementor internal library
       const Swiper = elementorFrontend.utils.swiper;
