@@ -27,8 +27,12 @@
  * along with Quantum Addons. If not, see https://www.gnu.org/licenses/gpl-3.0.html.
  */
 
+
+/** */ ///For IDE
 define( 'QUANTUM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'QUANTUM_URL', plugin_dir_url( __FILE__ ) );
+
+define( 'QUANTUM_ADDONS_VERSION', wp_get_environment_type() === "production" ? 0.1 : time() );
 
 // Register Elementor widgets
 function quantum_addons_register_elementor_widgets( $widgets_manager )  {
