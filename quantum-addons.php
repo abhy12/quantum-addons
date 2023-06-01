@@ -32,7 +32,7 @@ define( 'QUANTUM_URL', plugin_dir_url( __FILE__ ) );
 
 // Register Elementor widgets
 function quantum_addons_register_elementor_widgets( $widgets_manager )  {
-   require_once( __DIR__ . '/widgets/advance-slider.php' );
+   require_once( __DIR__ . '/widgets/advance-slider/advance-slider.php' );
 
    $widgets_manager->register( new \Advance_slider() );
 }
