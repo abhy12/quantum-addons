@@ -26,7 +26,17 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->slides_templates = quantum_addons_get_templates( $this->template_paths, "html" );
 
       foreach( $this->slides_templates as $template_key_name => $_ )  {
-         $template_name = ucfirst( preg_replace( '/[-]/', " " ,$template_key_name ) );
+         $template_name = $template_key_name;
+
+         $underscore_position = strpos( $template_name, "_" );
+         if( $underscore_position )  {
+            ///remove words with and after underscore from template name which was added if the current
+            ///active theme has same template name as one of the plugin's default template name,
+            ///the key name will remains same
+            $template_name = substr( $template_name, 0, $underscore_position );
+         }
+
+         $template_name = ucfirst( preg_replace( '/[-]/', " ", $template_name ) );
          $this->slides_template_names[$template_key_name] = $template_name;
       }
    }
