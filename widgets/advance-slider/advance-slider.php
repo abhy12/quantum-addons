@@ -263,6 +263,43 @@ class Advance_slider extends \Elementor\Widget_Base  {
       );
 
       $this->add_responsive_control(
+         "navigation_vertical_align",
+         [
+            'label'      => esc_html__( "Vertical Align", "quantum-addons" ),
+            'type'       => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ["%", "px", "rem", "em"],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn' => "top: {{SIZE}}{{UNIT}}",
+            ],
+            'range'      => [
+               "min" => -200,
+            ],
+            'condition'  => [
+               'is_custom_navigation_buttons' => ''
+            ]
+         ]
+      );
+
+      $this->add_responsive_control(
+         "navigation_horizontal_align",
+         [
+            'label'      => esc_html__( "Horizontal Align", "quantum-addons" ),
+            'type'       => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ["%", "px", "rem", "em"],
+            'selectors'  => [
+               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn.quantum-prev-btn' => "left: {{SIZE}}{{UNIT}}",
+               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn.quantum-next-btn' => "right: {{SIZE}}{{UNIT}}",
+            ],
+            'range'      => [
+               "min" => -200,
+            ],
+            'condition'  => [
+               'is_custom_navigation_buttons' => ''
+            ]
+         ]
+      );
+
+      $this->add_responsive_control(
          'navigation_buttons_icon_size',
          [
             'label'      => 'Icon Size',
