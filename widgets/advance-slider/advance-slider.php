@@ -236,17 +236,17 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->end_controls_section();
 
       $this->start_controls_section(
-         'navigation_controls_options',
+         'navigation_buttons_options',
          [
-            'label' => esc_html__( 'Navigation Controls', 'quantum-addons' ),
+            'label' => esc_html__( 'Navigation Buttons', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
          ]
       );
 
       $this->add_responsive_control(
-         'show_navigation_next_prev_controls',
+         'show_navigation_next_prev_buttons',
          [
-            'label'           => esc_html__( 'Next & Previous Controls', 'quantum-addons' ),
+            'label'           => esc_html__( 'Show/Hide Buttons', 'quantum-addons' ),
             'type'            => \ELEMENTOR\Controls_Manager::SELECT,
             'default'         => '',
             'options'         => [
@@ -319,9 +319,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
       );
 
       $this->add_control(
-         'navigation_control_prev_icon',
+         'navigation_prev_button_icon',
          [
-            'label'     => esc_html__( 'Previous Control Icon', 'quantum-addons' ),
+            'label'     => esc_html__( 'Previous Button Icon', 'quantum-addons' ),
             'type'      => \ELEMENTOR\Controls_Manager::ICONS,
             'skin'      => 'media',
             'default'   => [
@@ -335,9 +335,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
       );
 
       $this->add_control(
-         'navigation_control_next_icon',
+         'navigation_next_button_icon',
          [
-            'label'     => esc_html__( 'Next Control Icon', 'quantum-addons' ),
+            'label'     => esc_html__( 'Next Button Icon', 'quantum-addons' ),
             'type'      => \ELEMENTOR\Controls_Manager::ICONS,
             'skin'      => 'media',
             'default'   => [
@@ -353,7 +353,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'is_custom_navigation_buttons',
          [
-            'label'     => esc_html__( 'Custom Controls', 'quantum-addons' ),
+            'label'     => esc_html__( 'Custom Navigation Buttons', 'quantum-addons' ),
             'type'      => \ELEMENTOR\Controls_Manager::SWITCHER,
             'label_on'  => 'Custom',
             'label_off' => 'Default',
@@ -364,7 +364,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'custom_navigation_prev_button_selector',
          [
-            'label'              => esc_html__( 'Previous Control Selector', 'quantum-addons' ),
+            'label'              => esc_html__( 'Previous Button Selector', 'quantum-addons' ),
             'type'               => \ELEMENTOR\Controls_Manager::TEXT,
             'description'        => esc_html__( 'Input CSS selector eg: .custom-prev-btn or #custom-prev-btn', 'quantum-addons' ),
             'placeholder'        => esc_html__( '.custom-prev-btn', 'quantum-addons' ),
@@ -379,7 +379,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'custom_navigation_next_button_selector',
          [
-            'label'              => esc_html__( 'Next Control Selector', 'quantum-addons' ),
+            'label'              => esc_html__( 'Next Button Selector', 'quantum-addons' ),
             'type'               => \ELEMENTOR\Controls_Manager::TEXT,
             'description'        => esc_html__( 'Input CSS selector eg: .custom-next-btn or #custom-next-btn', 'quantum-addons' ),
             'placeholder'        => esc_html__( '.custom-next-btn', 'quantum-addons' ),
@@ -396,7 +396,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'pagination_options',
          [
-            'label' => esc_html__( 'Pagination', 'quantum-addons' ),
+            'label' => esc_html__( 'Pagination Dots', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
          ]
       );
@@ -404,7 +404,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'show_pagination',
          [
-            'label'           => esc_html__( 'Pagination', 'quantum-addons' ),
+            'label'           => esc_html__( 'Show/Hide Pagination', 'quantum-addons' ),
             'type'            => \ELEMENTOR\Controls_Manager::SELECT,
             'default'         => '',
             'options'         => [
@@ -487,7 +487,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'show_pagination_scrollbar',
          [
-            'label'           => esc_html__( 'Pagination Scrollbar', 'quantum-addons' ),
+            'label'           => esc_html__( 'Show/hide Scrollbar', 'quantum-addons' ),
             'type'            => \ELEMENTOR\Controls_Manager::SELECT,
             'default'         => '',
             'options'         => [
@@ -1037,7 +1037,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'style_navigation_controls',
          [
-            'label' => esc_html__( 'Navigation Controls', 'quantum-addons' ),
+            'label' => esc_html__( 'Navigation Buttons', 'quantum-addons' ),
             'tab'   => \ELEMENTOR\Controls_Manager::TAB_STYLE
          ]
       );
@@ -1181,7 +1181,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'style_pagination',
          [
-            'label' => esc_html__( 'Pagination', 'quantum-addons' ),
+            'label' => esc_html__( 'Pagination Dots', 'quantum-addons' ),
             'tab'   => \ELEMENTOR\Controls_Manager::TAB_STYLE
          ]
       );
@@ -1375,7 +1375,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'style_pagination_dots_size',
          [
-            'label'      => 'Icon Size',
+            'label'      => 'Dot Size',
             'type'       => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', 'rem', 'em'],
             'default'    => [
@@ -1497,10 +1497,10 @@ class Advance_slider extends \Elementor\Widget_Base  {
 
          if( isset( $settings['is_custom_navigation_buttons'] ) && $settings['is_custom_navigation_buttons'] === '' )  { ?>
             <button class="quantum-slider-btn quantum-prev-btn">
-               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_control_prev_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_prev_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
             </button>
             <button class="quantum-slider-btn quantum-next-btn">
-               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_control_next_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_next_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
             </button>
          <?php }
 
