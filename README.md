@@ -1,6 +1,6 @@
-# Most customizable (trying to be) Elementor Addons Plugin
+# Customizable Elementor Addons Plugin
 
 ## Addons
 
-- [Advance Slider](./widgets/Advance-slider/)
+- [Advance Slider](./widgets/advance-slider/)
 - more soon...
