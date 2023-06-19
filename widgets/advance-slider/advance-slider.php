@@ -14,7 +14,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
    public function __construct( $data = [], $args = null )  {
       parent::__construct( $data, $args );
       wp_register_script( 'advance-slider-script', QUANTUM_URL . '/assets/js/advance-slider.js', ['jquery', 'elementor-frontend'], QUANTUM_ADDONS_VERSION, true );
-      wp_register_style( 'advance-slider-styles', QUANTUM_URL . '/assets/css/advance-slider.css', null, QUANTUM_ADDONS_VERSION );
+      wp_register_style( 'advance-slider-styles', QUANTUM_URL . '/assets/css/advance-slider.css', [], QUANTUM_ADDONS_VERSION );
 
       $this->template_paths = [QUANTUM_DIR . "/templates/advance-slider", get_stylesheet_directory() . "/quantum-addons/advance-slider"];
       $this->init_templates();
