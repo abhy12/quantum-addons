@@ -779,6 +779,33 @@ class Advance_slider extends \Elementor\Widget_Base  {
          ]
       );
 
+      $this->add_responsive_control(
+         'heading_text_align',
+			[
+				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'textdomain' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'textdomain' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'textdomain' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'left',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .el-quantum-title' => 'text-align: {{VALUE}};',
+				],
+			]
+      );
+
       $this->start_controls_tabs(
          'heading_styles'
       );
@@ -858,6 +885,33 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label' => esc_html__( 'Paragraph', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
+      );
+
+      $this->add_responsive_control(
+         'paragraph_text_align',
+			[
+				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'textdomain' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'textdomain' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'textdomain' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'left',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .el-quantum-content' => 'text-align: {{VALUE}};',
+				],
+			]
       );
 
       $this->add_group_control(
@@ -950,6 +1004,33 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label' => esc_html__( 'Additional Content', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
+      );
+
+      $this->add_responsive_control(
+         'additional_content_text_align',
+			[
+				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'textdomain' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'textdomain' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'textdomain' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'left',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .el-quantum-add-content' => 'text-align: {{VALUE}};',
+				],
+			]
       );
 
       $this->add_group_control(
