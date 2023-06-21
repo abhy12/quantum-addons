@@ -2,7 +2,7 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
    getDefaultSettings()  {
       return {
          selectors: {
-            container: ".quantum-swiper-container",
+            container: ".el-quantum-advance-slider-container",
          },
       }
    }
@@ -76,11 +76,11 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
             type: paginationType,
          },
          navigation: {
-            nextEl: customNextBtn ? customNextBtn : '.quantum-next-btn',
-            prevEl: customPrevBtn ? customPrevBtn : '.quantum-prev-btn',
+            nextEl: customNextBtn ? customNextBtn : '.el-quantum-next-btn',
+            prevEl: customPrevBtn ? customPrevBtn : '.el-quantum-prev-btn',
          },
          scrollbar: {
-            el: customScrollbar ? customScrollbar : ".swiper-scrollbar",
+            el: customScrollbar ? customScrollbar : ".el-quantum-slider-scrollbar",
             draggable: isScrollbarDraggable,
          },
          breakpoints: {},

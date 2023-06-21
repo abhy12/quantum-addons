@@ -13,10 +13,10 @@ First [download](https://github.com/abhy12/quantum-addons/blob/master/templates/
 In that template file you have this HTML struture like this
 ```html
 <div>
-   <img class="slider-image" src="{{Image.url}}" alt="{{Image.alt}}">
+   <img class="el-quantum-slider-image" src="{{Image.url}}" alt="{{Image.alt}}">
    <div class="el-quantum-content-container">
       <h3 class="el-quantum-title">{{Title}}</h3>
-      <p class="el-quantum-content">{{Paragraph}}</p>
+      <p class="el-quantum-para">{{Paragraph}}</p>
       <p class="el-quantum-add-content">{{Additional_content}}</p>
    </div>
 </div>

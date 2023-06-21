@@ -1,26 +1,26 @@
-.quantum-swiper-container .swiper-pagination,
-.quantum-swiper-container .swiper-scrollbar{
+.el-quantum-advance-slider-container .swiper-pagination,
+.el-quantum-advance-slider-container .swiper-scrollbar{
     position: static;
 }
-.quantum-swiper-container .swiper-slide{
+.el-quantum-advance-slider-container .el-quantum-slide{
     height: unset;
 }
-.quantum-swiper-container .quantum-slider-btn{
+.el-quantum-advance-slider-container .el-quantum-slider-btn{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 999;
 }
-.quantum-swiper-container .quantum-slider-btn.quantum-prev-btn{
+.el-quantum-advance-slider-container .el-quantum-slider-btn.el-quantum-prev-btn{
     left: 0;
 }
-.quantum-swiper-container .quantum-slider-btn.quantum-next-btn{
+.el-quantum-advance-slider-container .el-quantum-slider-btn.el-quantum-next-btn{
     right: 0;
 }
-.quantum-slider-btn{
+.el-quantum-slider-btn{
     padding: 13px 25px;
     border-radius: 0;
 }
-.quantum-swiper-container .quantum-slider-pagination .swiper-pagination-bullet{
+.el-quantum-advance-slider-container .el-quantum-slider-pagination .swiper-pagination-bullet{
     opacity: 1;
 }

@@ -107,14 +107,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $repeater->add_control(
          'title',
          [
-            'label'       => esc_html__( 'Heading', 'quantum-addons' ),
+            'label'       => esc_html__( 'Title', 'quantum-addons' ),
             'type'        => \Elementor\Controls_Manager::TEXT,
             'placeholder' =>  esc_html__( 'Write someting...', 'quantum-addons' ),
          ]
       );
 
       $repeater->add_control(
-         'content',
+         'paragraph',
          [
             'label'       => esc_html__( 'Paragraph', 'quantum-addons' ),
             'type'        => \Elementor\Controls_Manager::TEXTAREA,
@@ -254,7 +254,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'none' => esc_html__( 'Hide', 'quantum-addons' ),
             ],
             'selectors'       => [
-               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn' => 'display: {{VALUE}};',
+               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn' => 'display: {{VALUE}};',
             ],
             'condition'       => [
                'is_custom_navigation_buttons' => ''
@@ -269,7 +269,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ["%", "px", "rem", "em"],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn' => "top: {{SIZE}}{{UNIT}}",
+               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn' => "top: {{SIZE}}{{UNIT}}",
             ],
             'range'      => [
                "min" => -200,
@@ -287,8 +287,8 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ["%", "px", "rem", "em"],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn.quantum-prev-btn' => "left: {{SIZE}}{{UNIT}}",
-               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-btn.quantum-next-btn' => "right: {{SIZE}}{{UNIT}}",
+               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn.el-quantum-prev-btn' => "left: {{SIZE}}{{UNIT}}",
+               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn.el-quantum-next-btn' => "right: {{SIZE}}{{UNIT}}",
             ],
             'range'      => [
                "min" => -200,
@@ -310,7 +310,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'size' => '1.2'
             ],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slider-btn' => 'font-size: {{SIZE}}{{UNIT}};'
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'font-size: {{SIZE}}{{UNIT}};'
             ],
             'condition' => [
                'is_custom_navigation_buttons' => ''
@@ -412,7 +412,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'none' => esc_html__( 'Hide', 'quantum-addons' ),
             ],
             'selectors'       => [
-               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-pagination' => 'display: {{VALUE}};',
+               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-pagination' => 'display: {{VALUE}};',
             ],
             'condition'       => [
                'is_custom_pagination' => ''
@@ -495,7 +495,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'none' => esc_html__( 'Hide', 'quantum-addons' ),
             ],
             'selectors'       => [
-               '{{WRAPPER}} .quantum-swiper-container .quantum-slider-scrollbar' => 'display: {{VALUE}};',
+               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-scrollbar' => 'display: {{VALUE}};',
             ],
             'condition'       => [
                'is_custom_scrollbar' => ''
@@ -563,7 +563,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'visible' => 'Visible',
             ],
             'selectors' => [
-               '{{WRAPPER}} .quantum-swiper-container' => 'overflow: {{VALUE}}'
+               '{{WRAPPER}} .el-quantum-advance-slider-container' => 'overflow: {{VALUE}}'
             ],
          ]
       );
@@ -576,7 +576,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'size_units'  => ['px', 'rem' ,'em', '%'],
             'description' => esc_html__( 'Note: if you change padding you may want to reload the browser (if slider not working properly)', 'quantum-addons' ),
             'selectors'   => [
-               '{{WRAPPER}} .quantum-swiper-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-advance-slider-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -588,7 +588,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-swiper-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-advance-slider-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -608,7 +608,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'name'     => 'border',
             'label'    => esc_html__( 'Border', 'quantum-addons' ),
-            'selector' => '{{WRAPPER}} .quantum-slide',
+            'selector' => '{{WRAPPER}} .el-quantum-slide',
          ]
       );
 
@@ -617,7 +617,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'name'     => 'box_shadow',
             'label'    => esc_html__( 'Box Shadow', 'quantum-addons' ),
-            'selector' => '{{WRAPPER}} .quantum-slide',
+            'selector' => '{{WRAPPER}} .el-quantum-slide',
          ]
       );
 
@@ -627,7 +627,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'name'     => 'background',
             'label'    => esc_html__( 'Background', 'quantum-addons' ),
             'types'    => ['classic', 'gradient'],
-            'selector' => '{{WRAPPER}} .quantum-slide',
+            'selector' => '{{WRAPPER}} .el-quantum-slide',
          ]
       );
 
@@ -638,7 +638,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -664,7 +664,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'size' => '100'
             ],
             'selectors'  => [
-               '{{WRAPPER}} .slider-image' => 'width: {{SIZE}}{{UNIT}};'
+               '{{WRAPPER}} .el-quantum-slider-image' => 'width: {{SIZE}}{{UNIT}};'
             ]
          ]
       );
@@ -680,7 +680,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'size' => '250'
             ],
             'selectors' => [
-               '{{WRAPPER}} .slider-image' => 'height: {{SIZE}}{{UNIT}};'
+               '{{WRAPPER}} .el-quantum-slider-image' => 'height: {{SIZE}}{{UNIT}};'
             ],
          ]
       );
@@ -699,7 +699,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             ],
             'default'   => 'cover',
             'selectors' => [
-               '{{WRAPPER}} .slider-image'  => 'object-fit: {{VALUE}}'
+               '{{WRAPPER}} .el-quantum-slider-image'  => 'object-fit: {{VALUE}}'
             ],
             'condition' => [
                'image_height!' => '',
@@ -765,7 +765,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->start_controls_section(
          'heading_style',
          [
-            'label' => esc_html__( 'Heading', 'quantum-addons' ),
+            'label' => esc_html__( 'Title', 'quantum-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
          ]
       );
@@ -909,7 +909,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
 				'default' => 'left',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .el-quantum-content' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .el-quantum-para' => 'text-align: {{VALUE}};',
 				],
 			]
       );
@@ -919,7 +919,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'    => esc_html__( 'Typrography', 'quantum-addons' ),
             'name'     => 'paragraph_typography',
-            'selector' => '{{WRAPPER}} .el-quantum-content',
+            'selector' => '{{WRAPPER}} .el-quantum-para',
          ]
       );
 
@@ -941,7 +941,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => '#5C5C5C',
             'selectors' => [
-               '{{WRAPPER}} .el-quantum-content' => 'color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-para' => 'color: {{VALUE}}',
             ],
          ]
       );
@@ -961,7 +961,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-               '{{WRAPPER}} .el-quantum-content:hover' => 'color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-para:hover' => 'color: {{VALUE}}',
             ],
          ]
       );
@@ -977,7 +977,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .el-quantum-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-para' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -989,7 +989,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .el-quantum-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-para' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -1128,7 +1128,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'name'     => 'style_navigation_controls_border',
             'exclude'  => ['color'],
-            'selector' => '{{WRAPPER}} .quantum-slider-btn',
+            'selector' => '{{WRAPPER}} .el-quantum-slider-btn',
          ]
       );
 
@@ -1137,7 +1137,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'name'     => 'navigation_controls_box_shadow',
             'label'    => esc_html__( 'Box Shadow', 'quantum-addons' ),
-            'selector' => '{{WRAPPER}} .quantum-slider-btn',
+            'selector' => '{{WRAPPER}} .el-quantum-slider-btn',
          ]
       );
 
@@ -1157,7 +1157,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => '#fff',
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-btn' => 'color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'color: {{VALUE}}',
             ],
          ]
       );
@@ -1169,7 +1169,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => '#19A7CE',
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-btn' => 'background-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'background-color: {{VALUE}}',
             ],
          ]
       );
@@ -1180,7 +1180,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'     => esc_html__( 'Border color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-btn' => 'border-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'border-color: {{VALUE}}',
             ],
          ]
       );
@@ -1200,7 +1200,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'     => esc_html__( 'Icon color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-btn:hover' => 'color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-btn:hover' => 'color: {{VALUE}}',
             ],
          ]
       );
@@ -1212,7 +1212,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => '#3A98B9',
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-btn:hover' => 'background-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-btn:hover' => 'background-color: {{VALUE}}',
             ],
          ]
       );
@@ -1223,7 +1223,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'     => esc_html__( 'Border color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-btn:hover' => 'border-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-btn:hover' => 'border-color: {{VALUE}}',
             ],
          ]
       );
@@ -1240,7 +1240,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'separator'  => 'before',
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slider-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -1252,7 +1252,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slider-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -1289,7 +1289,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
 				'default' => 'center',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .quantum-slider-pagination' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .el-quantum-slider-pagination' => 'text-align: {{VALUE}};',
 				],
             'condition' => [
                'pagination_type!' => 'progressbar',
@@ -1305,7 +1305,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'condition' => [
                'pagination_type' => 'bullets',
             ],
-            'selector' => '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet',
+            'selector' => '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet',
          ]
       );
 
@@ -1316,7 +1316,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
             'condition' => [
                'pagination_type' => 'bullets',
@@ -1332,7 +1332,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'condition' => [
                'pagination_type' => 'bullets',
             ],
-            'selector' => '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet',
+            'selector' => '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet',
          ]
       );
 
@@ -1354,7 +1354,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'pagination_type' => 'bullets',
             ],
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'border-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet' => 'border-color: {{VALUE}}',
             ],
          ]
       );
@@ -1369,7 +1369,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'pagination_type' => 'bullets',
             ],
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
             ],
          ]
       );
@@ -1392,7 +1392,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'pagination_type' => 'bullets',
             ],
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet:hover' => 'border-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet:hover' => 'border-color: {{VALUE}}',
             ],
          ]
       );
@@ -1406,7 +1406,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'pagination_type' => 'bullets',
             ],
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet:hover' => 'background-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet:hover' => 'background-color: {{VALUE}}',
             ],
          ]
       );
@@ -1429,7 +1429,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'pagination_type' => 'bullets',
             ],
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'border-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'border-color: {{VALUE}}',
             ],
          ]
       );
@@ -1444,7 +1444,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'pagination_type' => 'bullets',
             ],
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'background-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active' => 'background-color: {{VALUE}}',
             ],
          ]
       );
@@ -1464,7 +1464,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'size' => '6'
             ],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};'
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};'
             ],
             'condition' => [
                'pagination_type' => 'bullets',
@@ -1483,7 +1483,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'size' => '4'
             ],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slider-pagination .swiper-pagination-bullet' => '--swiper-pagination-bullet-horizontal-gap: {{SIZE}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet' => '--swiper-pagination-bullet-horizontal-gap: {{SIZE}}{{UNIT}};',
             ],
             'condition' => [
                'pagination_type' => 'bullets',
@@ -1508,7 +1508,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => 'rgba(0, 0, 0, 0.1)',
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-scrollbar' => 'background-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-scrollbar' => 'background-color: {{VALUE}}',
             ],
          ]
       );
@@ -1520,7 +1520,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'      => \Elementor\Controls_Manager::COLOR,
             'default'   => 'rgba(0, 0, 0, 0.5)',
             'selectors' => [
-               '{{WRAPPER}} .quantum-slider-scrollbar .swiper-scrollbar-drag' => 'background-color: {{VALUE}}',
+               '{{WRAPPER}} .el-quantum-slider-scrollbar .swiper-scrollbar-drag' => 'background-color: {{VALUE}}',
             ],
          ]
       );
@@ -1532,8 +1532,8 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', 'rem' ,'em', '%'],
             'selectors'  => [
-               '{{WRAPPER}} .quantum-slider-scrollbar' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-               '{{WRAPPER}} .quantum-slider-scrollbar .swiper-scrollbar-drag' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-scrollbar' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-scrollbar .swiper-scrollbar-drag' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
@@ -1546,7 +1546,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $slides = $settings['slides'];
       $current_template = $this->slides_templates[$settings['select_template']];
       ?>
-      <div class="swiper-container quantum-swiper-container">
+      <div class="swiper-container el-quantum-advance-slider-container">
          <div class="swiper-wrapper">
             <?php
             foreach( $slides as $slide )  {
@@ -1557,7 +1557,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                   $image_alt = 'slide image';
                }
                $slide_title = trim( $slide['title'] );
-               $slide_para = trim( $slide['content'] );
+               $slide_para = trim( $slide['paragraph'] );
                $slide_add = trim( $slide['additional_text'] );
                if( isset( $current_template ) )  {
                   $temp_template = $current_template;
@@ -1566,27 +1566,27 @@ class Advance_slider extends \Elementor\Widget_Base  {
                   $temp_template = preg_replace( "/{{Title}}/", $slide_title, $temp_template );
                   $temp_template = preg_replace( "/{{Paragraph}}/", $slide_para, $temp_template );
                   $temp_template = preg_replace( "/{{Additional_content}}/", $slide_add, $temp_template );
-                  echo '<div class="swiper-slide quantum-slide">' . $temp_template . '</div>';
+                  echo '<div class="swiper-slide el-quantum-slide">' . $temp_template . '</div>';
                }
             }
             ?>
          </div>
          <?php
          if( isset( $settings['is_custom_pagination'] ) && $settings['is_custom_pagination'] === '' )  { ?>
-            <div class="quantum-slider-pagination swiper-pagination"></div>
+            <div class="el-quantum-slider-pagination swiper-pagination"></div>
          <?php }
 
          if( isset( $settings['is_custom_navigation_buttons'] ) && $settings['is_custom_navigation_buttons'] === '' )  { ?>
-            <button class="quantum-slider-btn quantum-prev-btn">
+            <button class="el-quantum-slider-btn el-quantum-prev-btn">
                <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_prev_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
             </button>
-            <button class="quantum-slider-btn quantum-next-btn">
+            <button class="el-quantum-slider-btn el-quantum-next-btn">
                <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_next_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
             </button>
          <?php }
 
          if( isset( $settings['is_custom_scrollbar'] ) && $settings['is_custom_scrollbar'] === '' )  { ?>
-            <div class="quantum-slider-scrollbar swiper-scrollbar"></div>
+            <div class="el-quantum-slider-scrollbar swiper-scrollbar"></div>
          <?php } ?>
       </div>
       <?php
