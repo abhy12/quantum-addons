@@ -1,5 +1,7 @@
 <?php
 
+use Elementor\Icons_Manager;
+
 if( !defined( 'ABSPATH' ) )  {
 	exit; // Exit if accessed directly.
 }
@@ -254,11 +256,30 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'none' => esc_html__( 'Hide', 'quantum-addons' ),
             ],
             'selectors'       => [
-               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn' => 'display: {{VALUE}};',
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'display: {{VALUE}};',
             ],
             'condition'       => [
                'is_custom_navigation_buttons' => ''
             ],
+         ]
+      );
+
+      $this->add_responsive_control(
+         'position_navigation_next_prev_buttons',
+         [
+            'label'           => esc_html__( 'Buttons Position', 'quantum-addons' ),
+            'type'            => \ELEMENTOR\Controls_Manager::SELECT,
+            'default'         => '0px',
+            'options'         => [
+               '0px'  => esc_html__( 'Inside', 'quantum-addons' ),
+               '100%' => esc_html__( 'Outside', 'quantum-addons' ),
+            ],
+            'selectors'       => [
+               '{{WRAPPER}} .el-quantum-slider-btn' => '--el-qunt-buttons-position: {{VALUE}};',
+            ],
+            'condition'  => [
+               'is_custom_navigation_buttons' => ''
+            ]
          ]
       );
 
@@ -269,7 +290,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ["%", "px", "rem", "em"],
             'selectors'  => [
-               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn' => "top: {{SIZE}}{{UNIT}}",
+               '{{WRAPPER}} .el-quantum-slider-btn' => "top: {{SIZE}}{{UNIT}}",
             ],
             'range'      => [
                "min" => -200,
@@ -287,8 +308,8 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'       => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ["%", "px", "rem", "em"],
             'selectors'  => [
-               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn.el-quantum-prev-btn' => "left: {{SIZE}}{{UNIT}}",
-               '{{WRAPPER}} .el-quantum-advance-slider-container .el-quantum-slider-btn.el-quantum-next-btn' => "right: {{SIZE}}{{UNIT}}",
+               '{{WRAPPER}} .el-quantum-slider-btn.el-quantum-prev-btn' => "left: {{SIZE}}{{UNIT}}",
+               '{{WRAPPER}} .el-quantum-slider-btn.el-quantum-next-btn' => "right: {{SIZE}}{{UNIT}}",
             ],
             'range'      => [
                "min" => -200,
@@ -1546,47 +1567,51 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $slides = $settings['slides'];
       $current_template = $this->slides_templates[$settings['select_template']];
       ?>
-      <div class="swiper-container el-quantum-advance-slider-container">
-         <div class="swiper-wrapper">
-            <?php
-            foreach( $slides as $slide )  {
-               $image = $slide['image'];
-               $image_url = trim( $image['url'] );
-               $image_alt = isset( $image['alt'] ) ? trim( $image['alt'] ) : '';
-               if( $image_alt === '' )  {
-                  $image_alt = 'slide image';
+      <div class="el-quantum-advance-slider-outer-container">
+         <div class="swiper-container el-quantum-advance-slider-container">
+            <div class="swiper-wrapper">
+               <?php
+               foreach( $slides as $slide )  {
+                  $image = $slide['image'];
+                  $image_url = trim( $image['url'] );
+                  $image_alt = isset( $image['alt'] ) ? trim( $image['alt'] ) : '';
+                  if( $image_alt === '' )  {
+                     $image_alt = 'slide image';
+                  }
+                  $slide_title = trim( $slide['title'] );
+                  $slide_para = trim( $slide['paragraph'] );
+                  $slide_add = trim( $slide['additional_text'] );
+                  if( isset( $current_template ) )  {
+                     $temp_template = $current_template;
+                     $temp_template = preg_replace( "/{{Image\.url}}/", $image_url, $temp_template );
+                     $temp_template = preg_replace( "/{{Image\.alt}}/", $image_alt, $temp_template );
+                     $temp_template = preg_replace( "/{{Title}}/", $slide_title, $temp_template );
+                     $temp_template = preg_replace( "/{{Paragraph}}/", $slide_para, $temp_template );
+                     $temp_template = preg_replace( "/{{Additional_content}}/", $slide_add, $temp_template );
+                     echo '<div class="swiper-slide el-quantum-slide">' . $temp_template . '</div>';
+                  }
                }
-               $slide_title = trim( $slide['title'] );
-               $slide_para = trim( $slide['paragraph'] );
-               $slide_add = trim( $slide['additional_text'] );
-               if( isset( $current_template ) )  {
-                  $temp_template = $current_template;
-                  $temp_template = preg_replace( "/{{Image\.url}}/", $image_url, $temp_template );
-                  $temp_template = preg_replace( "/{{Image\.alt}}/", $image_alt, $temp_template );
-                  $temp_template = preg_replace( "/{{Title}}/", $slide_title, $temp_template );
-                  $temp_template = preg_replace( "/{{Paragraph}}/", $slide_para, $temp_template );
-                  $temp_template = preg_replace( "/{{Additional_content}}/", $slide_add, $temp_template );
-                  echo '<div class="swiper-slide el-quantum-slide">' . $temp_template . '</div>';
-               }
-            }
-            ?>
-         </div>
-         <?php
-         if( isset( $settings['is_custom_pagination'] ) && $settings['is_custom_pagination'] === '' )  { ?>
-            <div class="el-quantum-slider-pagination swiper-pagination"></div>
-         <?php }
+               ?>
+            </div>
 
+            <?php
+            if( isset( $settings['is_custom_pagination'] ) && $settings['is_custom_pagination'] === '' )  { ?>
+               <div class="el-quantum-slider-pagination swiper-pagination"></div>
+            <?php }
+
+            if( isset( $settings['is_custom_scrollbar'] ) && $settings['is_custom_scrollbar'] === '' )  { ?>
+               <div class="el-quantum-slider-scrollbar swiper-scrollbar"></div>
+            <?php } ?>
+         </div>
+
+         <?php
          if( isset( $settings['is_custom_navigation_buttons'] ) && $settings['is_custom_navigation_buttons'] === '' )  { ?>
             <button class="el-quantum-slider-btn el-quantum-prev-btn">
-               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_prev_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+               <?php Icons_Manager::render_icon( $settings['navigation_prev_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
             </button>
             <button class="el-quantum-slider-btn el-quantum-next-btn">
-               <?php \Elementor\Icons_Manager::render_icon( $settings['navigation_next_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+               <?php Icons_Manager::render_icon( $settings['navigation_next_button_icon'], [ 'aria-hidden' => 'true' ] ); ?>
             </button>
-         <?php }
-
-         if( isset( $settings['is_custom_scrollbar'] ) && $settings['is_custom_scrollbar'] === '' )  { ?>
-            <div class="el-quantum-slider-scrollbar swiper-scrollbar"></div>
          <?php } ?>
       </div>
       <?php

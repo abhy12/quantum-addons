@@ -1,7 +1,13 @@
 class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
+   constructor( e )  {
+      super( e );
+      this.outerContainerSelector = "";
+   }
+
    getDefaultSettings()  {
       return {
          selectors: {
+            outerContainer: ".el-quantum-advance-slider-outer-container",
             container: ".el-quantum-advance-slider-container",
          },
       }
@@ -11,11 +17,12 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
       const selectors = this.getSettings( "selectors" );
 
       return {
-         $container: this.$element.find( selectors.container ),
+         $container: this.$element.find( selectors.outerContainer + " " + selectors.container ),
       }
    }
 
    onInit()  {
+      this.outerContainerSelector = "." + Array.from( this.$element[0].classList ).join( "." );
       this.initSwiper( this.getDefaultElements().$container );
    }
 
@@ -76,8 +83,8 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
             type: paginationType,
          },
          navigation: {
-            nextEl: customNextBtn ? customNextBtn : '.el-quantum-next-btn',
-            prevEl: customPrevBtn ? customPrevBtn : '.el-quantum-prev-btn',
+            nextEl: customNextBtn ? customNextBtn : this.outerContainerSelector + " " + ".el-quantum-next-btn",
+            prevEl: customPrevBtn ? customPrevBtn : this.outerContainerSelector + " " + ".el-quantum-prev-btn",
          },
          scrollbar: {
             el: customScrollbar ? customScrollbar : ".el-quantum-slider-scrollbar",
@@ -106,7 +113,7 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
 jQuery( window ).on( "elementor/frontend/init", () =>  {
    const addHandler = ( $element ) => {
       elementorFrontend.elementsHandler.addHandler( advanceSlider, { $element } );
-   };
+   }
 
    elementorFrontend.hooks.addAction(
       "frontend/element_ready/Advance_slider.default",
