@@ -30,3 +30,6 @@
 .el-quantum-advance-slider-container .el-quantum-slider-pagination .swiper-pagination-bullet{
     opacity: 1;
 }
+.el-quantum-advance-slider-outer-container .el-quantum-slider-scrollbar{
+    width: 100%;
+}
