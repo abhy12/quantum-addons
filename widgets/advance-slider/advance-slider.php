@@ -1511,6 +1511,18 @@ class Advance_slider extends \Elementor\Widget_Base  {
          ]
       );
 
+      $this->add_responsive_control(
+         'style_pagination_dots_margin',
+         [
+            'label'      => esc_html__( 'Margin', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', 'rem' ,'em', '%'],
+            'selectors'  => [
+               '{{WRAPPER}} .el-quantum-slider-pagination' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+         ]
+      );
+
       $this->end_controls_section();
 
       $this->start_controls_section(
@@ -1554,6 +1566,18 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'selectors'  => [
                '{{WRAPPER}} .el-quantum-slider-scrollbar' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                '{{WRAPPER}} .el-quantum-slider-scrollbar .swiper-scrollbar-drag' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+         ]
+      );
+
+      $this->add_responsive_control(
+         'style_scrollbar_margin',
+         [
+            'label'      => esc_html__( 'Margin', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', 'rem' ,'em', '%'],
+            'selectors'  => [
+               '{{WRAPPER}} .el-quantum-slider-scrollbar' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
          ]
       );
