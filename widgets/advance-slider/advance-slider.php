@@ -1503,7 +1503,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'size' => '4'
             ],
             'selectors'  => [
-               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet' => '--swiper-pagination-bullet-horizontal-gap: {{SIZE}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-pagination .swiper-pagination-bullet' => 'margin-left: {{SIZE}}{{UNIT}}; margin-right: {{SIZE}}{{UNIT}};',
             ],
             'condition' => [
                'pagination_type' => 'bullets',
