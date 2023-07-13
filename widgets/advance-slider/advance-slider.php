@@ -320,25 +320,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
          ]
       );
 
-      $this->add_responsive_control(
-         'navigation_buttons_icon_size',
-         [
-            'label'      => 'Icon Size',
-            'type'       => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px', 'rem', 'em'],
-            'default'    => [
-               'unit' => 'rem',
-               'size' => '1.2'
-            ],
-            'selectors'  => [
-               '{{WRAPPER}} .el-quantum-slider-btn' => 'font-size: {{SIZE}}{{UNIT}};'
-            ],
-            'condition' => [
-               'is_custom_navigation_buttons' => ''
-            ]
-         ]
-      );
-
       $this->add_control(
          'navigation_prev_button_icon',
          [
@@ -1141,6 +1122,25 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label' => esc_html__( 'Navigation Buttons', 'quantum-addons' ),
             'tab'   => \ELEMENTOR\Controls_Manager::TAB_STYLE
+         ]
+      );
+
+      $this->add_responsive_control(
+         'navigation_buttons_icon_size',
+         [
+            'label'      => 'Icon Size',
+            'type'       => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px', 'rem', 'em'],
+            'default'    => [
+               'unit' => 'rem',
+               'size' => '1.2'
+            ],
+            'selectors'  => [
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'font-size: {{SIZE}}{{UNIT}};'
+            ],
+            'condition' => [
+               'is_custom_navigation_buttons' => ''
+            ]
          ]
       );
 
