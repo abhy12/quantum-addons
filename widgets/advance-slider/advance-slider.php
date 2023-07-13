@@ -1231,7 +1231,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'     => esc_html__( 'Background color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
-            'default'   => '#3A98B9',
             'selectors' => [
                '{{WRAPPER}} .el-quantum-slider-btn:hover' => 'background-color: {{VALUE}}',
             ],
