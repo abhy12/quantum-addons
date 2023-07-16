@@ -321,6 +321,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'      => esc_html__( "Vertical Align", "quantum-addons" ),
             'type'       => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ["%", "px", "rem", "em"],
+            'default'    => ['unit' => '%'],
             'selectors'  => [
                '{{WRAPPER}} .el-quantum-slider-btn' => "top: {{SIZE}}{{UNIT}}",
             ],
@@ -339,6 +340,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'      => esc_html__( "Horizontal Align", "quantum-addons" ),
             'type'       => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ["%", "px", "rem", "em"],
+            'default'    => ['unit' => '%'],
             'selectors'  => [
                '{{WRAPPER}} .el-quantum-slider-btn.el-quantum-prev-btn' => "left: {{SIZE}}{{UNIT}}",
                '{{WRAPPER}} .el-quantum-slider-btn.el-quantum-next-btn' => "right: {{SIZE}}{{UNIT}}",
