@@ -54,7 +54,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
    }
 
    public function get_custom_help_url() {
-      return 'https://github.com/abhy12/quantum-addons';
+      return 'https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md';
    }
 
    public function get_categories()  {
