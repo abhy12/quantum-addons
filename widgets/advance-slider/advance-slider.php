@@ -86,11 +86,43 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'select_template',
          [
-            'label'   => esc_html__( 'Select Template', 'quantum-addons' ),
-            'type'    => \Elementor\Controls_Manager::SELECT,
-            'options' => $this->slides_template_names,
-            'default' => 'default'
+            'label'       => esc_html__( 'Select Template', 'quantum-addons' ),
+            'type'        => \Elementor\Controls_Manager::SELECT,
+            'description' => 'For information on how to <a target="_blank" href="https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md#creating-template">Create template</a>',
+            'options'     => $this->slides_template_names,
+            'default'     => 'default',
+            'condition'   => [
+               'is_custom_inline_template' => '',
+            ]
          ],
+      );
+
+      $this->add_control(
+         'is_custom_inline_template',
+         [
+            'label'        => esc_html__( 'Custom Inline Template', 'quantum-addons' ),
+            'type'         => \Elementor\Controls_Manager::SWITCHER,
+            'description'  => 'For information on how to <a target="_blank" href="https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md#template-tags">Write template</a>',
+            'label_on'     => 'Yes',
+            'label_off'    => 'No',
+            'return_value' => 'yes',
+				'default'      => '',
+         ]
+      );
+
+      $this->add_control(
+         'custom_inline_template',
+         [
+            'label'      => esc_html__( 'Custom Template', 'quantum-addons' ),
+            'show_label' => false,
+            'type'       => \Elementor\Controls_Manager::CODE,
+            'language'   => 'html',
+            'separator'  => 'after',
+            'default'    => trim( quantum_addons_remove_html_comments( $this->slides_templates['default'] ) ),
+            'condition' => [
+               'is_custom_inline_template' => 'yes',
+            ]
+         ]
       );
 
       $repeater = new \Elementor\Repeater();
@@ -1588,7 +1620,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
    protected function render()  {
       $settings = $this->get_settings_for_display();
       $slides = $settings['slides'];
-      $current_template = $this->slides_templates[$settings['select_template']];
+      $current_template = $settings['is_custom_inline_template'] ? $settings['custom_inline_template'] : $this->slides_templates[$settings['select_template']];
       ?>
       <div class="el-quantum-advance-slider-outer-container">
          <div class="swiper-container el-quantum-advance-slider-container">
