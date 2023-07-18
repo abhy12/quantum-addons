@@ -326,7 +326,10 @@ class Advance_slider extends \Elementor\Widget_Base  {
                '{{WRAPPER}} .el-quantum-slider-btn' => "top: {{SIZE}}{{UNIT}}",
             ],
             'range'      => [
-               "min" => -200,
+               "%" => [
+                  "min" => -100,
+                  "max" => 100
+               ]
             ],
             'condition'  => [
                'is_custom_navigation_buttons' => ''
@@ -346,7 +349,10 @@ class Advance_slider extends \Elementor\Widget_Base  {
                '{{WRAPPER}} .el-quantum-slider-btn.el-quantum-next-btn' => "right: {{SIZE}}{{UNIT}}",
             ],
             'range'      => [
-               "min" => -200,
+               "%" => [
+                  "min" => -100,
+                  "max" => 100
+               ]
             ],
             'condition'  => [
                'is_custom_navigation_buttons' => ''
