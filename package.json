@@ -1,0 +1,27 @@
+{
+   "name": "quantum-addons",
+   "version": "0.1.0",
+   "description": "An Elementor Addons Plugin",
+   "main": "index.js",
+   "scripts": {
+      "build": "webpack --mode=production",
+      "dev": "webpack --mode=development --watch"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/abhy12/quantum-addons.git"
+   },
+   "author": "Abhishek Yesankar",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/abhy12/quantum-addons/issues"
+   },
+   "homepage": "https://github.com/abhy12/quantum-addons#readme",
+   "devDependencies": {
+      "css-loader": "^6.8.1",
+      "esbuild-loader": "^3.0.1",
+      "mini-css-extract-plugin": "^2.7.6",
+      "webpack": "^5.88.2",
+      "webpack-cli": "^5.1.4"
+   }
+}
