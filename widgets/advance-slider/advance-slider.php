@@ -1598,6 +1598,25 @@ class Advance_slider extends \Elementor\Widget_Base  {
       );
 
       $this->add_responsive_control(
+         "style_scrollbar_height",
+         [
+            'label'      => esc_html__( "Height", "quantum-addons" ),
+            'type'       => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ["px"],
+            'default'    => ['unit' => 'px'],
+            'selectors'  => [
+               '{{WRAPPER}} .el-quantum-slider-scrollbar' => "height: {{SIZE}}{{UNIT}}",
+            ],
+            'range'      => [
+               "px" => [
+                  "min" => 3,
+                  "max" => 20
+               ]
+            ],
+         ]
+      );
+
+      $this->add_responsive_control(
          'style_scrollbar_border_radius',
          [
             'label'      => esc_html__( 'Border Radius', 'quantum-addons' ),
