@@ -4,7 +4,7 @@
  * Description: Elementor Addons Plugin
  * Version: 0.1
  * Author: Abhishek Yesankar
- * Author URI: https://github.com/Abhishek-Yesankar/
+ * Author URI: https://github.com/abhy12
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: quantum-addons
