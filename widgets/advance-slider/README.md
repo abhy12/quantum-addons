@@ -10,7 +10,7 @@
 
 First [download](https://github.com/abhy12/quantum-addons/blob/master/templates/advance-slider/default.html) the ``default.html`` file and place this file in the root of the active theme location ``/quantum-addons/advance-slider/default.html`` you can rename the ``default.html`` with anything you want just make sure it has ``.html`` extension.
 
-In that template file you have this HTML struture like this
+In that template file you have this HTML structure
 ```html
 <div>
    <img class="el-quantum-slider-image" src="{{Image.url}}" alt="{{Image.alt}}">
