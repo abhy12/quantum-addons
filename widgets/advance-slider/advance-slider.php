@@ -1100,7 +1100,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
-            'default'   => '#eee',
             'selectors' => [
                '{{WRAPPER}} .el-quantum-add-content' => 'color: {{VALUE}}',
             ],
