@@ -195,6 +195,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'              => esc_html__( 'Show Slides', 'quantum-addons' ),
             'type'               => \Elementor\Controls_Manager::NUMBER,
+            'description'        => "You can also use decimal value",
             'frontend_available' => true,
             'desktop_default'    => 3,
             'tablet_default'     => 2,
@@ -205,8 +206,10 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_responsive_control(
          'slide_per_group',
          [
-            'label'   => esc_html__( 'Slides per Swipe', 'quantum-addons' ),
-            'type'    => \Elementor\Controls_Manager::SELECT,
+            'label'             => esc_html__( 'Slides Per Swipe', 'quantum-addons' ),
+            'type'              => \Elementor\Controls_Manager::SELECT,
+            'description'       => "Which slides will show next, when you swipe or navigate through buttons.<br>If value is 1 then next slide will show and if value is 2 then next's next slide will show and so forth and so on.",
+            'separator'         => "before",
             'options' => [
                '1' => '1',
                '2' => '2',
@@ -239,6 +242,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'mobile_default'     => '1',
             'default'            => '1',
             'frontend_available' => true,
+            'separator'          => "before",
          ]
       );
 
