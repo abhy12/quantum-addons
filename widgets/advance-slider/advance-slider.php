@@ -159,7 +159,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $repeater->add_control(
          'additional_text',
          [
-            'label'   => esc_html__( 'Additonal Content', 'quantum-addons' ),
+            'label'   => esc_html__( 'Additional Content', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::WYSIWYG,
             'default' => esc_html__( 'additional content...', 'quantum-addons' ),
          ]
@@ -815,7 +815,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'   => esc_html__( 'Typrography', 'quantum-addons' ),
+            'label'   => esc_html__( 'Typography', 'quantum-addons' ),
             'name'     => 'content_typography',
             'selector' => '{{WRAPPER}} .el-quantum-title',
          ]
@@ -959,7 +959,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'    => esc_html__( 'Typrography', 'quantum-addons' ),
+            'label'    => esc_html__( 'Typography', 'quantum-addons' ),
             'name'     => 'paragraph_typography',
             'selector' => '{{WRAPPER}} .el-quantum-para',
          ]
@@ -1078,7 +1078,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_group_control(
          \Elementor\Group_Control_Typography::get_type(),
          [
-            'label'    => esc_html__( 'Typrography', 'quantum-addons' ),
+            'label'    => esc_html__( 'Typography', 'quantum-addons' ),
             'name'     => 'additional_typography',
             'selector' => '{{WRAPPER}} .el-quantum-add-content',
          ]
