@@ -74,12 +74,11 @@ class Advance_slider extends \Elementor\Widget_Base  {
    }
 
    protected function register_controls()  {
-      //start with tab section
       $this->start_controls_section(
-         'section_container',
+         'section_template',
          [
-            'label' => esc_html__( 'Content', 'quantum-addons' ),
-            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+            'label'  => esc_html__( 'Template', 'quantum-addons'),
+            'tab'    => \Elementor\Controls_Manager::TAB_CONTENT,
          ]
       );
 
@@ -122,6 +121,16 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'condition' => [
                'is_custom_inline_template' => 'yes',
             ]
+         ]
+      );
+
+      $this->end_controls_section();
+
+      $this->start_controls_section(
+         'section_container',
+         [
+            'label' => esc_html__( 'Content', 'quantum-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
          ]
       );
 
