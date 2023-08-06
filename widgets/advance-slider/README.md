@@ -58,3 +58,78 @@ And add buttons IDs to those input boxes
 I have created same buttons with above steps here is final result:
 
 [![finised-example-of-custom-buttons](https://user-images.githubusercontent.com/98876719/246653957-d7a9603c-748f-436b-b42b-97b5dd3d60b0.png)](https://user-images.githubusercontent.com/98876719/246654370-455c1e0f-f9b7-4533-9e18-8f7b294b6c3e.mp4)
+
+## Hooks
+
+**Reference links**
+- [Wordpress JavaScript Hooks guide](https://nebula.gearside.com/how-to-use-the-javascript-wordpress-hooks-api-without-any-extra-libraries/) (**must read**)
+- [Wordpress JavaScript hooks](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/)
+- [Wordpress Hooks](https://developer.wordpress.org/plugins/hooks/)
+
+### Where to write JavaScript hooks
+If you are writing this hooks on theme file make sure it's dependency array has ``wp-hooks`` value or you can use [Simple Custom CSS and JS](https://wordpress.org/plugins/custom-css-js/) or similar plugin for writing this hooks.
+
+### JavaScript Hooks for Swiper
+
+#### Intro
+This slider has built with [Swiper](https://swiperjs.com/) slider library, it has so many options to customize your slider, but those options can't possibly be fit into this addon so we have created some hooks so you can alter the configuration depending on your needs.
+
+#### ```quantum_adslider_after_init_swiper_config```
+
+**Filter Hook:** Fires after swiper configuration has been initialized.
+
+``wp.hooks.addFilter( 'hookName', 'namespace', callback: ( config, container ) => config, priority )``
+
+##### Example:
+
+```javascript
+wp.hooks.addFilter( "quantum_adslider_after_init_swiper_config", "quantum_addons/advance_slider", changeSwiperConfig, 10 );
+
+function changeSwiperConfig( swiperConfig, container )  {
+   /* to only apply on some of the element(s) you can add css class to those widget
+      https://elementor.com/help/css-classes-in-elementor/
+   */
+   if( container.classList.contains( "el-custom-slider" ) )  {
+      swiperConfig.slidesPerView = 3;
+      console.log( "this is the one", container );
+   }
+
+   // have to return the config for slider to work correctly
+   return swiperConfig;
+}
+```
+
+Source: [/widgets/advance-slider/js/advance-slider](https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/js/advance-slider.js#L113)
+
+#### ```quantum_adslider_swiper_instance```
+
+**Action Hook (kind of):** Fires after swiper instance has been initialized. It will get every swiper instance on the page but not add any action on the script.
+
+``wp.hooks.addAction( 'hookName', 'namespace', callback: ( instance, container ) => {}, priority )``
+
+##### Example:
+At the time of writing this documentation, this addon doesn't have autoplay options so we will use this example with the help this hook to implement [autoplay](https://swiperjs.com/swiper-api#autoplay).
+
+```javascript
+wp.hooks.addAction( "quantum_adslider_swiper_instance", "quantum_addons/advance_slider", getSwiperInstance, 10 );
+
+function getSwiperInstance( instance, element )  {
+   /* to only get some of the element(s) you can add css class to those widget
+      https://elementor.com/help/css-classes-in-elementor/
+   */
+   if( element.classList.contains( "el-custom-slider") )  {
+      instance.params.autoplay = {
+         delay: 3000
+      }
+
+      // call update method after you change something
+      instance.update();
+
+      instance.autoplay.start();
+
+      console.log( instance );
+   }
+}
+```
+
+Source: [/widgets/advance-slider/js/advance-slider](https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/js/advance-slider.js#L38)
