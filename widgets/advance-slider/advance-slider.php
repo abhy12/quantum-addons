@@ -277,7 +277,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'return_value'       => '1',
             'default'            => '1',
             'frontend_available' => true,
-            'description'        => __( "This slider is built with <a href='https://swiperjs.com/' target='_blank'>Swiper</a>, if you wanna extend this slider you can do that with this <a href='#' target='_blank'>guide</a>.")
+            'description'        => __( "You extend this slider with hooks, follow this <a href='https://github.com/abhy12/quantum-addons/tree/master/widgets/advance-slider#hooks' target='_blank'>documentation</a>.")
          ]
       );
 
