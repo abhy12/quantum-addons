@@ -35,6 +35,8 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
       const Swiper = elementorFrontend.utils.swiper;
       const newSwiperInstance = await new Swiper( el, swiperConfig );
 
+      wp.hooks.doAction( "quantum_adslider_swiper_instance", newSwiperInstance, this.$element[0] );
+
       ///adding swiper instance to container with Jquery data function
       ///P.S i don't know why anyone will need this, but just leaving it right here for now
       this.getDefaultElements().$container.data( "swiper", newSwiperInstance );
@@ -108,7 +110,7 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
 			}
 		});
 
-      return swiperConfig;
+      return wp.hooks.applyFilters( "quantum_adslider_after_init_swiper_config", swiperConfig, this.$element[0] );
    }
 }
 
