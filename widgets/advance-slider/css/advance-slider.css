@@ -33,3 +33,6 @@
 .el-quantum-advance-slider-outer-container .el-quantum-slider-scrollbar{
     width: 100%;
 }
+.el-quantum-advance-slider-container.swiper-container .swiper-wrapper{
+    overflow: unset;
+}
