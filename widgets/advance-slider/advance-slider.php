@@ -151,7 +151,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          'title',
          [
             'label'       => esc_html__( 'Title', 'quantum-addons' ),
-            'type'        => \Elementor\Controls_Manager::TEXT,
+            'type'        => \Elementor\Controls_Manager::TEXTAREA,
             'placeholder' =>  esc_html__( 'Write someting...', 'quantum-addons' ),
          ]
       );
