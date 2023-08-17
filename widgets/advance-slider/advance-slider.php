@@ -98,7 +98,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
 
       $this->add_control(
          'is_custom_inline_template',
-         [
+      [
             'label'        => esc_html__( 'Custom Inline Template', 'quantum-addons' ),
             'type'         => \Elementor\Controls_Manager::SWITCHER,
             'description'  => 'For information on how to <a target="_blank" href="https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md#template-tags">Write template</a>',
@@ -665,6 +665,18 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'name'     => 'border',
             'label'    => esc_html__( 'Border', 'quantum-addons' ),
             'selector' => '{{WRAPPER}} .el-quantum-slide',
+         ]
+      );
+
+      $this->add_responsive_control(
+         'slide_style_border_radius',
+         [
+            'label'      => esc_html__( 'Border Radius', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', 'rem' ,'em', '%'],
+            'selectors'  => [
+               '{{WRAPPER}} .el-quantum-slide' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
          ]
       );
 
