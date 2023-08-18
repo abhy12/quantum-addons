@@ -46,3 +46,38 @@ function quantum_addons_get_templates( $template_paths = [], $format )  {
 function quantum_addons_remove_html_comments( $content = '' )  {
    return preg_replace( '/<!--(.|\s)*?-->/', '', $content );
 }
+
+/**
+ * @param string $template html template
+ * @param array $template_tags needs key of the $content and value of regex without backward slashes (/.../) to find template tags
+ * if $content has multidimensional array values you can add '=>' to the key eg: (image=>url) currently only support only one level
+ * @param array $content of get_settings_for_display()
+ * @return string of parsed template
+ */
+function quantum_addons_parse_template( string $template, array $template_tags, array $content )  {
+   foreach( $template_tags as $key => $regex )  {
+      if( strpos( $key, '=>' ) )  {
+         $multi_array_key = explode( '=>', $key );
+         $template_content = $content[$multi_array_key[0]][$multi_array_key[1]];
+      } else {
+         $template_content = trim( $content[$key] );
+      }
+
+      if( is_string( $template_content ) )  $template_content = trim( $template_content );
+
+      if( $template_content === '' || !$template_content )  {
+         // replace the whole conditional tag statment to nothing
+         // TODO: improve the regex
+         $template = preg_replace( str_replace( "REGEX", $regex, "/{#REGEX}(.*){#REGEX}/" ), '', $template );
+      } else if( $template_content !== '' )  {
+         $template = preg_replace( str_replace( "REGEX", $regex, "/{{REGEX}}/" ), $template_content, $template );
+         $template = preg_replace( "/{{Title}}/", $template_content, $template );
+      }
+
+      // finally remove any other unused condition tags
+      $template = preg_replace( str_replace( "REGEX", $regex, "/{#REGEX}/" ), '', $template );
+      $template = preg_replace( str_replace( "REGEX", $regex, "/{{REGEX}}/" ), '', $template );
+   }
+
+   return $template;
+}

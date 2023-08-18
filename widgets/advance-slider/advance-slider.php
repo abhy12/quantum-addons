@@ -41,6 +41,16 @@ class Advance_slider extends \Elementor\Widget_Base  {
       }
    }
 
+   private function get_template_tags_regex()  {
+      return [
+         'title'       => 'Title',
+         'paragraph'   => 'Paragraph',
+         'additional_text' => 'Additional_content',
+         'image=>url' => 'Image\.url',
+         'image=>alt'  => 'Image\.alt',
+      ];
+   }
+
    public function get_name()  {
       return 'Advance_slider';
    }
@@ -1679,23 +1689,8 @@ class Advance_slider extends \Elementor\Widget_Base  {
             <div class="swiper-wrapper">
                <?php
                foreach( $slides as $slide )  {
-                  $image = $slide['image'];
-                  $image_url = trim( $image['url'] );
-                  $image_alt = isset( $image['alt'] ) ? trim( $image['alt'] ) : '';
-                  if( $image_alt === '' )  {
-                     $image_alt = 'slide image';
-                  }
-                  $slide_title = trim( $slide['title'] );
-                  $slide_para = trim( $slide['paragraph'] );
-                  $slide_add = trim( $slide['additional_text'] );
                   if( isset( $current_template ) )  {
-                     $temp_template = $current_template;
-                     $temp_template = preg_replace( "/{{Image\.url}}/", $image_url, $temp_template );
-                     $temp_template = preg_replace( "/{{Image\.alt}}/", $image_alt, $temp_template );
-                     $temp_template = preg_replace( "/{{Title}}/", $slide_title, $temp_template );
-                     $temp_template = preg_replace( "/{{Paragraph}}/", $slide_para, $temp_template );
-                     $temp_template = preg_replace( "/{{Additional_content}}/", $slide_add, $temp_template );
-                     echo '<div class="swiper-slide el-quantum-slide">' . $temp_template . '</div>';
+                     echo '<div class="swiper-slide el-quantum-slide">' . quantum_addons_parse_template( $current_template, $this->get_template_tags_regex(), $slide ) . '</div>';
                   }
                }
                ?>
