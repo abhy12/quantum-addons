@@ -1,0 +1,25 @@
+name: Create Archive
+run-name: Creating Production package on release
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+    - run: npm install
+    - run: npm run build
+    - name: Archive Release
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+        type: "zip"
+        filename: "quantum-addons-${{ github.ref_name }}.zip"
+        exclusions: "*.git* /*node_modules/* .editorconfig package.json package-lock.json webpack.config.js ./README.md"
+    - name: Upload Release
+      uses: ncipollo/release-action@v1.13.0
+      with:
+        artifacts: "quantum-addons-${{ github.ref_name }}.zip"
+        token: ${{ secrets.ZIP }}
+        allowUpdates: true
