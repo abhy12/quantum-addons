@@ -21,5 +21,5 @@ jobs:
       uses: ncipollo/release-action@v1.13.0
       with:
         artifacts: "quantum-addons-${{ github.ref_name }}.zip"
-        token: ${{ secrets.ZIP }}
+        token: ${{ secrets.ZIP_TOKEN }}
         allowUpdates: true
