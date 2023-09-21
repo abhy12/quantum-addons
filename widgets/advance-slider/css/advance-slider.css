@@ -36,3 +36,6 @@
 .el-quantum-advance-slider-container.swiper-container .swiper-wrapper{
     overflow: unset;
 }
+.el-quantum-advance-slider-container.swiper-container .swiper-slide.slide-link{
+    display: block;
+}

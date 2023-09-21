@@ -48,6 +48,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          'additional_text' => 'Additional_content',
          'image=>url' => 'Image\.url',
          'image=>alt'  => 'Image\.alt',
+         'slide_link=>url' => 'Link'
       ];
    }
 
@@ -181,6 +182,15 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'   => esc_html__( 'Additional Content', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::WYSIWYG,
             'default' => esc_html__( 'additional content...', 'quantum-addons' ),
+         ]
+      );
+
+      $repeater->add_control(
+         'slide_link',
+         [
+            'label'   => esc_html__( 'Link', 'quantum-addons' ),
+            'type'    => \Elementor\Controls_Manager::URL,
+            'options' => [ 'url', 'is_external', 'nofollow' ],
          ]
       );
 
@@ -605,6 +615,55 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label_off'          => 'No',
             'default'            => 'Yes',
             'frontend_available' => true,
+         ]
+      );
+
+      $this->end_controls_section();
+
+      $this->start_controls_section(
+         'global_link_options',
+         [
+            'label' => esc_html__( 'Link', 'quantum-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+         ]
+      );
+
+      $this->add_control(
+         'global_wrap_link_to_slide',
+         [
+            'label'        => esc_html__( 'Wrap to Whole Slide', 'quantum-addons' ),
+            'type'         => \Elementor\Controls_Manager::SWITCHER,
+            'default'      => '',
+            'return_value' => 'yes',
+         ]
+      );
+
+      $this->add_control(
+         'global_wrap_link_warning',
+         [
+            'type' => \Elementor\Controls_Manager::RAW_HTML,
+            'raw'  => esc_html__( 'Don\'t add any ancher tags into the template if you selecting it to "yes". If you do it will be removed.', 'quantum-addons' ),
+            'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+         ]
+      );
+
+      $this->add_control(
+         'global_link_open_to_new_window',
+         [
+            'label'        => esc_html__( 'Open to New Window', 'quantum-addons' ),
+            'type'         => \Elementor\Controls_Manager::SWITCHER,
+            'default'      => '',
+            'return_value' => 'yes',
+         ]
+      );
+
+      $this->add_control(
+         'global_link_nofollow',
+         [
+            'label'        => esc_html__( 'No Follow', 'quantum-addons' ),
+            'type'         => \Elementor\Controls_Manager::SWITCHER,
+            'default'      => '',
+            'return_value' => 'yes',
          ]
       );
 
@@ -1683,14 +1742,72 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $settings = $this->get_settings_for_display();
       $slides = $settings['slides'];
       $current_template = $settings['is_custom_inline_template'] ? $settings['custom_inline_template'] : $this->slides_templates[$settings['select_template']];
+      $global_wrap_link_to_slide = $settings['global_wrap_link_to_slide'];
+      $global_link_open_to_new_window = $settings['global_link_open_to_new_window'];
+      $global_link_nofollow = $settings['global_link_nofollow'];
+
+      $to_new_window_attr = "target='_blank'";
+      $no_follow_attr = "rel='nofollow'";
       ?>
       <div class="el-quantum-advance-slider-outer-container">
          <div class="swiper-container el-quantum-advance-slider-container">
             <div class="swiper-wrapper">
                <?php
-               foreach( $slides as $slide )  {
-                  if( isset( $current_template ) )  {
-                     echo '<div class="swiper-slide el-quantum-slide">' . quantum_addons_parse_template( $current_template, $this->get_template_tags_regex(), $slide ) . '</div>';
+               if( isset( $current_template ) )  {
+
+                  // remove any ancher tags in the template if link is wrapping around the slides
+                  if( $global_wrap_link_to_slide === 'yes' )  {
+                     $current_template = quantum_addons_remove_ancher_tags( $current_template );
+                  }
+
+                  foreach( $slides as $slide )  {
+                     $slide_link = esc_url( $slide['slide_link']['url'] );
+                     $slide_open_link_to_new_window = $slide['slide_link']['is_external'];
+                     $slide_link_no_follow = $slide['slide_link']['nofollow'];
+                     $ancher_or_div_tag = "div";
+                     $slide_classes = "swiper-slide el-quantum-slide";
+                     $ancher_attributes = "";
+
+                     if( $global_wrap_link_to_slide === 'yes' && $slide_link !== '' )  {
+                        $ancher_or_div_tag = "a";
+
+                        $ancher_attributes .= " ";
+                        $ancher_attributes .= 'href="' . $slide_link . '"';
+                        $ancher_attributes .= " ";
+
+                        if( $slide_open_link_to_new_window || $global_link_open_to_new_window === 'yes' )  {
+                           $ancher_attributes .= $to_new_window_attr;
+                           $ancher_attributes .= " ";
+                        }
+
+                        if( $slide_link_no_follow || $global_link_nofollow === 'yes' )  {
+                           $ancher_attributes .= $no_follow_attr;
+                           $ancher_attributes .= " ";
+                        }
+
+                        $slide_classes .= " ";
+                        $slide_classes .= "slide-link";
+                     }
+
+                     $ancher_or_div_tag .= " ";
+
+                     $temp_template = quantum_addons_parse_template( $current_template, $this->get_template_tags_regex(), $slide );
+
+                     if( $slide_open_link_to_new_window )  {
+                        $temp_template = preg_replace( '/{{Link\.target}}/', $to_new_window_attr , $temp_template );
+                     } else if( !$slide_open_link_to_new_window )  {
+                        $temp_template = preg_replace( '/{{Link\.target}}/', '' , $temp_template );
+                     }
+
+                     if( $slide_link_no_follow )  {
+                        $temp_template = preg_replace( '/{{Link\.nofollow}}/', $no_follow_attr, $temp_template );
+                     } else if( !$slide_link_no_follow )  {
+                        $temp_template = preg_replace( '/{{Link\.nofollow}}/', '', $temp_template );
+                     }
+
+                     echo  '<' . $ancher_or_div_tag . $ancher_attributes . "class='$slide_classes'>" .
+                              $temp_template  .
+                           '</'. $ancher_or_div_tag . '>';
                   }
                }
                ?>

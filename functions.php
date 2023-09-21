@@ -81,3 +81,16 @@ function quantum_addons_parse_template( string $template, array $template_tags, 
 
    return $template;
 }
+
+/**
+ * @param string $content from which ancher tags to be removed
+ * @return string without ancher tags
+ */
+function quantum_addons_remove_ancher_tags( string $content )  {
+   // remove ancher opening tag
+   $content = preg_replace( '/<[\s]*a[^>]*>/', '', $content );
+   // remove ancher closing tag
+   $content = preg_replace( '/<[\s]*\/[\s]*a[\s]*[\s]*>/', '', $content );
+
+   return $content;
+}
