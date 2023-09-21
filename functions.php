@@ -71,7 +71,6 @@ function quantum_addons_parse_template( string $template, array $template_tags, 
          $template = preg_replace( str_replace( "REGEX", $regex, "/{#REGEX}(.*){#REGEX}/" ), '', $template );
       } else if( $template_content !== '' )  {
          $template = preg_replace( str_replace( "REGEX", $regex, "/{{REGEX}}/" ), $template_content, $template );
-         $template = preg_replace( "/{{Title}}/", $template_content, $template );
       }
 
       // finally remove any other unused condition tags
