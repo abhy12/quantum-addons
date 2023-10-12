@@ -58,7 +58,10 @@ function quantum_addons_parse_template( string $template, array $template_tags, 
    foreach( $template_tags as $key => $regex )  {
       if( strpos( $key, '=>' ) )  {
          $multi_array_key = explode( '=>', $key );
-         $template_content = $content[$multi_array_key[0]][$multi_array_key[1]];
+
+         if( !isset( $content[$multi_array_key[0]][$multi_array_key[1]] ) )  continue;
+
+         $template_content = $content[$multi_array_key[0]][$multi_array_key[1]]; 
       } else {
          $template_content = trim( $content[$key] );
       }
