@@ -1761,7 +1761,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                   }
 
                   foreach( $slides as $slide )  {
-                     $slide_link = esc_url( $slide['slide_link']['url'] );
+                     $slide_link = $slide['slide_link']['url'];
                      $slide_open_link_to_new_window = $slide['slide_link']['is_external'];
                      $slide_link_no_follow = $slide['slide_link']['nofollow'];
                      $ancher_or_div_tag = "div";
@@ -1772,7 +1772,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
                         $ancher_or_div_tag = "a";
 
                         $ancher_attributes .= " ";
-                        $ancher_attributes .= 'href="' . $slide_link . '"';
+                        $ancher_attributes .= 'href="' . esc_attr( esc_url( $slide_link ) ) . '"';
                         $ancher_attributes .= " ";
 
                         if( $slide_open_link_to_new_window || $global_link_open_to_new_window === 'yes' )  {
@@ -1805,9 +1805,11 @@ class Advance_slider extends \Elementor\Widget_Base  {
                         $temp_template = preg_replace( '/{{Link\.nofollow}}/', '', $temp_template );
                      }
 
-                     echo  '<' . $ancher_or_div_tag . $ancher_attributes . "class='$slide_classes'>" .
-                              $temp_template  .
-                           '</'. $ancher_or_div_tag . '>';
+                     echo wp_kses_post(
+                        '<' . $ancher_or_div_tag . $ancher_attributes . 'class="' . esc_attr( $slide_classes ) . '">'
+                           . $temp_template .
+                        '</'. $ancher_or_div_tag . '>'
+                     );
                   }
                }
                ?>
