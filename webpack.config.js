@@ -5,8 +5,8 @@ const { EsbuildPlugin } = require("esbuild-loader");
 module.exports = {
    entry: {
       "advance-slider": {
-         import: './widgets/advance-slider/js/advance-slider.js',
-         filename: './js/advance-slider.js',
+         import: './assets/js/advance-slider/advance-slider.js',
+         filename: './js/advance-slider/minified/advance-slider.min.js',
       },
    },
    module: {
@@ -31,7 +31,7 @@ module.exports = {
    },
    plugins: [
       new MiniCssExtractPlugin({
-         filename: './css/[name].css',
+         filename: './css/[name]/minified/[name].min.css',
       }),
    ],
    resolve: {

@@ -1,4 +1,4 @@
 node_modules
 
-assets/css/**
-assets/js/**
+assets/css/**/minified
+assets/js/**/minified

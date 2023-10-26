@@ -1,4 +1,4 @@
-import "../css/advance-slider.css";
+import "../../css/advance-slider/advance-slider.css";
 
 class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
    constructor( e )  {
