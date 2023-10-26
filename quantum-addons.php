@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name: Quantum Addons
+ * Plugin Name: Quantum Addons For Elementor
  * Description: Elementor Addons Plugin
- * Version: 0.1
+ * Version: 0.1.0
  * Author: Abhishek Yesankar
  * Author URI: https://github.com/abhy12
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: quantum-addons
  *
- * Elementor tested up to: 3.0.0
- * Elementor Pro tested up to: 3.0.0
+ * Elementor tested up to: 3.17.0
+ * Elementor Pro tested up to: 3.17.0
  *
  *
  * Quantum Addons is free software: you can redistribute it and/or modify
