@@ -41,7 +41,7 @@ define( 'QUANTUM_ADDONS_VERSION', wp_get_environment_type() === "production" ? 0
 function quantum_addons_register_elementor_widgets( $widgets_manager )  {
    require_once( __DIR__ . '/widgets/advance-slider/advance-slider.php' );
 
-   $widgets_manager->register( new \Advance_slider() );
+   $widgets_manager->register( new \Quantum_addons\Widget\Advance_slider() );
 }
 
 add_action( 'elementor/widgets/register', 'quantum_addons_register_elementor_widgets' );

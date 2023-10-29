@@ -1,4 +1,5 @@
 <?php
+namespace Quantum_addons\Widget;
 
 use Elementor\Icons_Manager;
 
