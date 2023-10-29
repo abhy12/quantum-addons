@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Quantum Addons For Elementor
  * Description: Elementor Addons Plugin
- * Version: 0.1.0
+ * Version: 0.1.1
  * Author: Abhishek Yesankar
  * Author URI: https://github.com/abhy12
  * License: GPLv3
