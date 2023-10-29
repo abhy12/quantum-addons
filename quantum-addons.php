@@ -29,6 +29,9 @@
 
 
 /** */ ///For IDE
+
+if( !defined( 'ABSPATH' ) )  exit; // Exit if accessed directly.
+
 define( 'QUANTUM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'QUANTUM_URL', plugin_dir_url( __FILE__ ) );
 

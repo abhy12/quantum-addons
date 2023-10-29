@@ -1,5 +1,7 @@
 <?php
 
+if( !defined( 'ABSPATH' ) )  exit; // Exit if accessed directly.
+
 /**
  * get all template content and file names
  *
@@ -61,7 +63,7 @@ function quantum_addons_parse_template( string $template, array $template_tags, 
 
          if( !isset( $content[$multi_array_key[0]][$multi_array_key[1]] ) )  continue;
 
-         $template_content = $content[$multi_array_key[0]][$multi_array_key[1]]; 
+         $template_content = $content[$multi_array_key[0]][$multi_array_key[1]];
       } else {
          $template_content = trim( $content[$key] );
       }
