@@ -317,9 +317,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'           => esc_html__( 'Show/Hide Buttons', 'quantum-addons' ),
             'type'            => \ELEMENTOR\Controls_Manager::SELECT,
-            'default'         => '',
+            'default'         => 'block',
             'options'         => [
-               ''     => esc_html__( 'Show', 'quantum-addons' ),
+               'block'     => esc_html__( 'Show', 'quantum-addons' ),
                'none' => esc_html__( 'Hide', 'quantum-addons' ),
             ],
             'selectors'       => [
@@ -483,9 +483,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'           => esc_html__( 'Show/Hide Pagination', 'quantum-addons' ),
             'type'            => \ELEMENTOR\Controls_Manager::SELECT,
-            'default'         => '',
+            'default'         => 'block',
             'options'         => [
-               ''     => esc_html__( 'Show', 'quantum-addons' ),
+               'block'     => esc_html__( 'Show', 'quantum-addons' ),
                'none' => esc_html__( 'Hide', 'quantum-addons' ),
             ],
             'selectors'       => [
@@ -566,9 +566,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'           => esc_html__( 'Show/hide Scrollbar', 'quantum-addons' ),
             'type'            => \ELEMENTOR\Controls_Manager::SELECT,
-            'default'         => '',
+            'default'         => 'block',
             'options'         => [
-               ''     => esc_html__( 'Show', 'quantum-addons' ),
+               'block'     => esc_html__( 'Show', 'quantum-addons' ),
                'none' => esc_html__( 'Hide', 'quantum-addons' ),
             ],
             'selectors'       => [
