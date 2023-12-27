@@ -1271,7 +1271,8 @@ class Advance_slider extends \Elementor\Widget_Base  {
                'size' => '1.2'
             ],
             'selectors'  => [
-               '{{WRAPPER}} .el-quantum-slider-btn' => 'font-size: {{SIZE}}{{UNIT}};'
+               '{{WRAPPER}} .el-quantum-slider-btn' => 'font-size: {{SIZE}}{{UNIT}};',
+               '{{WRAPPER}} .el-quantum-slider-btn svg' => 'width: {{SIZE}}{{UNIT}};',
             ],
             'condition' => [
                'is_custom_navigation_buttons' => ''
