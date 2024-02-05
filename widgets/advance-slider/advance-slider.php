@@ -538,8 +538,8 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'              => esc_html__( 'Clickable', 'quantum-addons' ),
             'type'               => \ELEMENTOR\Controls_Manager::SWITCHER,
             'separator'          => 'before',
-            'label_on'           => 'Yes',
-            'label_off'          => 'No',
+            'label_on'           => esc_html__( 'Yes', 'quantum-addons' ),
+            'label_off'          => esc_html__( 'No', 'quantum-addons' ),
             'default'            => 'yes',
             'frontend_available' => true,
          ]
@@ -621,8 +621,8 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'              => esc_html__( 'Draggable', 'quantum-addons' ),
             'type'               => \ELEMENTOR\Controls_Manager::SWITCHER,
             'separator'          => 'before',
-            'label_on'           => 'Yes',
-            'label_off'          => 'No',
+            'label_on'           => esc_html__( 'Yes', 'quantum-addons' ),
+            'label_off'          => esc_html__( 'No', 'quantum-addons' ),
             'default'            => 'yes',
             'frontend_available' => true,
          ]
