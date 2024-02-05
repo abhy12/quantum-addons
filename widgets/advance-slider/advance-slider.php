@@ -204,7 +204,15 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'fields'  => $repeater->get_controls(),
             'default' => [
                [
-                  'title'   => 'Slide #',
+                  'title'   => 'Slide #1',
+                  'content' => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus earum fuga nam.",
+               ],
+               [
+                  'title'   => 'Slide #2',
+                  'content' => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus earum fuga nam.",
+               ],
+               [
+                  'title'   => 'Slide #3',
                   'content' => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus earum fuga nam.",
                ],
             ]
