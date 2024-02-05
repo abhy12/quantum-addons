@@ -200,6 +200,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'   => esc_html__( 'Slides', 'quantum-addons' ),
             'type'    => \Elementor\Controls_Manager::REPEATER,
+            'title_field' => '{{{title}}}',
             'fields'  => $repeater->get_controls(),
             'default' => [
                [
