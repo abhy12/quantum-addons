@@ -540,7 +540,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'separator'          => 'before',
             'label_on'           => 'Yes',
             'label_off'          => 'No',
-            'default'            => 'Yes',
+            'default'            => 'yes',
             'frontend_available' => true,
          ]
       );
@@ -623,7 +623,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'separator'          => 'before',
             'label_on'           => 'Yes',
             'label_off'          => 'No',
-            'default'            => 'Yes',
+            'default'            => 'yes',
             'frontend_available' => true,
          ]
       );
