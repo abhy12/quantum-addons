@@ -311,6 +311,63 @@ class Advance_slider extends \Elementor\Widget_Base  {
          ]
       );
 
+      $this->add_control(
+         'slide_opt_autoplay',
+         [
+            'label'              => esc_html__( 'Autoplay', 'quantum-addons' ),
+            'type'               => \Elementor\Controls_Manager::SWITCHER,
+            'label_on'           => esc_html__( 'Yes', 'quantum-addons' ),
+            'label_off'          => esc_html__( 'No', 'quantum-addons' ),
+            'separator'          => 'before',
+            'return_value'       => '1',
+            'default'            => '1',
+            'frontend_available' => true,
+         ]
+      );
+
+      $this->add_responsive_control(
+         'slide_opt_autoplay_delay',
+         [
+            'label'              => esc_html__( 'Autoplay Timing (ms)', 'quantum-addons' ),
+            'type'               => \Elementor\Controls_Manager::NUMBER,
+            'min'                => 500,
+            'step'               => 100,
+            'default'            => 3000,
+            'frontend_available' => true,
+            'condition'          => [
+               'slide_opt_autoplay' => '1',
+            ]
+         ]
+      );
+
+      $this->add_responsive_control(
+         'slide_opt_autoplay_disable_on_interaction',
+         [
+            'label'              => esc_html__( 'Disable Autoplay On Interaction', 'quantum-addons' ),
+            'type'               => \Elementor\Controls_Manager::SWITCHER,
+            'return_value'       => '1',
+            'default'            => '',
+            'frontend_available' => true,
+            'condition'          => [
+               'slide_opt_autoplay' => '1',
+            ]
+         ]
+      );
+
+      $this->add_responsive_control(
+         'slide_opt_autoplay_pause_on_mouseover',
+         [
+            'label'              => esc_html__( 'Pause Autoplay On Hover', 'quantum-addons' ),
+            'type'               => \Elementor\Controls_Manager::SWITCHER,
+            'return_value'       => '1',
+            'default'            => '',
+            'frontend_available' => true,
+            'condition'          => [
+               'slide_opt_autoplay' => '1',
+            ]
+         ]
+      );
+
       $this->end_controls_section();
 
       $this->start_controls_section(

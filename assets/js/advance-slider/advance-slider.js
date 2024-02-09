@@ -53,6 +53,7 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
       const isPaginationClickable = settings['is_pagination_clickable'] === 'yes' ? true : false;
       const paginationType = settings['pagination_type'];
       const isScrollbarDraggable = settings['is_scrollbar_draggable'] === 'yes' ? true : false;
+      const isAutoPlayOn = settings['slide_opt_autoplay'] ? true : false;
 
       let customNextBtn = settings['custom_navigation_next_button_selector'];
       let customPrevBtn = settings['custom_navigation_prev_button_selector'];
@@ -100,14 +101,60 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
          handleElementorBreakpoints: true,
       }
 
+      if( isAutoPlayOn ) {
+         // default options will be applied when empty object given
+         swiperConfig.autoplay = {};
+         const autoplayDelay = settings['slide_opt_autoplay_delay'];
+         const disableOnInteraction = settings['slide_opt_autoplay_disable_on_interaction'];
+         const pauseOnMouseEnter = settings['slide_opt_autoplay_pause_on_mouseover'];
+
+         if( autoplayDelay ) {
+            swiperConfig.autoplay.delay = autoplayDelay;
+         }
+
+         if( typeof disableOnInteraction !== "undefined" ) {
+            swiperConfig.autoplay.disableOnInteraction = disableOnInteraction ? true : false;
+         }
+
+         if( typeof pauseOnMouseEnter !== "undefined" ) {
+            swiperConfig.autoplay.pauseOnMouseEnter = pauseOnMouseEnter ? true : false;
+         }
+      }
+
       ////add breakpoints values to swiper config
       Object.keys( elementorBreakpoints ).reverse().forEach( ( breakpointName ) =>  {
-			swiperConfig.breakpoints[ elementorBreakpoints[ breakpointName ].value ] =  {
+         const autoplayOpt = {};
+
+         if( isAutoPlayOn ) {
+            const autoplayDelay = settings['slide_opt_autoplay_delay_' + breakpointName];
+            const disableOnInteraction = settings['slide_opt_autoplay_disable_on_interaction_' + breakpointName];
+            const pauseOnMouseEnter = settings['slide_opt_autoplay_pause_on_mouseover_' + breakpointName];
+
+            if( typeof autoplayDelay !== 'undefined' ) {
+               autoplayOpt.delay = autoplayDelay;
+            }
+
+            if( typeof disableOnInteraction !== 'undefined' ) {
+               autoplayOpt.disableOnInteraction = disableOnInteraction ? true : false;
+            }
+
+            if( typeof pauseOnMouseEnter !== 'undefined' ) {
+               autoplayOpt.pauseOnMouseEnter = pauseOnMouseEnter ? true : false;
+            }
+         }
+
+         const breakpointPixel = elementorBreakpoints[breakpointName].value;
+
+			swiperConfig.breakpoints[breakpointPixel] = {
 				slidesPerView: +settings['slide_per_view_' + breakpointName],
             centeredSlides: +settings['center_slide_' + breakpointName] ? true : false,
 				spaceBetween: +settings['space_between_' + breakpointName],
 				slidesPerGroup: +settings['slide_per_group_' + breakpointName],
 			}
+
+         if( Object.keys( autoplayOpt ).length > 0 ) {
+            swiperConfig.breakpoints[elementorBreakpoints[ breakpointName ].value].autoplay = autoplayOpt;
+         }
 		});
 
       return wp.hooks.applyFilters( "quantum_adslider_after_init_swiper_config", swiperConfig, this.$element[0] );
