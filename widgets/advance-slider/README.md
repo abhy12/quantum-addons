@@ -101,11 +101,30 @@ function changeSwiperConfig( swiperConfig, container )  {
 
 Source: [/widgets/advance-slider/js/advance-slider](https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/js/advance-slider.js#L113)
 
+
+#### ```quantum_adslider_initiated```
+
+**Action Hook:** Fires after slider has been initiated.
+
+``wp.hooks.addAction( 'quantum_adslider_initiated', 'quantum_addons/advance_slider', callback: ( instance, container ) => {} )``
+
+##### Example:
+```javascript
+wp.hooks.addAction( 'quantum_adslider_initiated', 'quantum_addons/advance_slider',
+( instance, container ) => {
+   if( container.classList.contains( "eg-slider") ) {
+      // do something ...
+      instance.update();
+   }
+});
+```
+
 #### ```quantum_adslider_swiper_instance```
 
 **Action Hook (kind of):** Fires after swiper instance has been initialized. It will get every swiper instance on the page but not add any action on the script.
 
 ``wp.hooks.addAction( 'hookName', 'namespace', callback: ( instance, container ) => {}, priority )``
+
 
 ##### Example:
 At the time of writing this documentation, this addon doesn't have autoplay options so we will use this example with the help this hook to implement [autoplay](https://swiperjs.com/swiper-api#autoplay).

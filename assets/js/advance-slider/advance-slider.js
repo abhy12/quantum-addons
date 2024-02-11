@@ -99,6 +99,11 @@ class advanceSlider extends elementorModules.frontend.handlers.SwiperBase  {
          ///i saw this code in Elementor source code and this seems to
          ///"correct" the breakpoints according to swiper breakpoints
          handleElementorBreakpoints: true,
+         on: {
+            init: ( swiper ) => {
+               wp.hooks.doAction( "quantum_adslider_initiated", swiper, this.$element[0] );
+            }
+         }
       }
 
       if( isAutoPlayOn ) {
