@@ -2,6 +2,8 @@
 namespace Quantum_addons\Widget;
 
 use Elementor\Icons_Manager;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors as Global_Colors;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography as Global_Typography;
 
 if( !defined( 'ABSPATH' ) )  {
 	exit; // Exit if accessed directly.
@@ -980,6 +982,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'   => esc_html__( 'Typography', 'quantum-addons' ),
             'name'     => 'content_typography',
             'selector' => '{{WRAPPER}} .el-quantum-title',
+            'global' => [
+               'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+            ],
          ]
       );
 
@@ -1002,7 +1007,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'default' => 'left',
 				'toggle' => true,
 				'selectors' => [
 					'{{WRAPPER}} .el-quantum-title' => 'text-align: {{VALUE}};',
@@ -1026,10 +1030,12 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
-            'default'   => '#333',
             'selectors' => [
                '{{WRAPPER}} .el-quantum-title' => 'color: {{VALUE}}',
             ],
+            'global' => [
+               'default' => Global_Colors::COLOR_PRIMARY,
+            ]
          ]
       );
 
@@ -1110,7 +1116,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'default' => 'left',
 				'toggle' => true,
 				'selectors' => [
 					'{{WRAPPER}} .el-quantum-para' => 'text-align: {{VALUE}};',
@@ -1124,6 +1129,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'    => esc_html__( 'Typography', 'quantum-addons' ),
             'name'     => 'paragraph_typography',
             'selector' => '{{WRAPPER}} .el-quantum-para',
+            'global' => [
+               'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+            ],
          ]
       );
 
@@ -1143,9 +1151,11 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'     => esc_html__( 'Text Color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
-            'default'   => '#5C5C5C',
             'selectors' => [
                '{{WRAPPER}} .el-quantum-para' => 'color: {{VALUE}}',
+            ],
+            'global' => [
+               'default' => Global_Colors::COLOR_SECONDARY,
             ],
          ]
       );
@@ -1229,7 +1239,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'default' => 'left',
 				'toggle' => true,
 				'selectors' => [
 					'{{WRAPPER}} .el-quantum-add-content' => 'text-align: {{VALUE}};',
@@ -1243,6 +1252,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'    => esc_html__( 'Typography', 'quantum-addons' ),
             'name'     => 'additional_typography',
             'selector' => '{{WRAPPER}} .el-quantum-add-content',
+            'global' => [
+               'default' => Global_Typography::TYPOGRAPHY_TEXT,
+            ],
          ]
       );
 
@@ -1264,6 +1276,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'type'      => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                '{{WRAPPER}} .el-quantum-add-content' => 'color: {{VALUE}}',
+            ],
+            'global' => [
+               'default' => Global_Colors::COLOR_TEXT,
             ],
          ]
       );
@@ -1378,9 +1393,11 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'     => esc_html__( 'Icon color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
-            'default'   => '#fff',
             'selectors' => [
                '{{WRAPPER}} .el-quantum-slider-btn' => 'color: {{VALUE}}',
+            ],
+            'global' => [
+               'default' => Global_Colors::COLOR_SECONDARY,
             ],
          ]
       );
@@ -1390,9 +1407,11 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'     => esc_html__( 'Background color', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::COLOR,
-            'default'   => '#19A7CE',
             'selectors' => [
                '{{WRAPPER}} .el-quantum-slider-btn' => 'background-color: {{VALUE}}',
+            ],
+            'global' => [
+               'default' => Global_Colors::COLOR_ACCENT,
             ],
          ]
       );
