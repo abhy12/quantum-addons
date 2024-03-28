@@ -176,6 +176,7 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'label'       => esc_html__( 'Paragraph', 'quantum-addons' ),
             'type'        => \Elementor\Controls_Manager::TEXTAREA,
             'placeholder' => esc_html__( 'Write someting...', 'quantum-addons' ),
+            'default'     => esc_html__( 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text'),
          ]
       );
 
