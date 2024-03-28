@@ -10,8 +10,10 @@ if( !defined( 'ABSPATH' ) )  exit; // Exit if accessed directly.
  * @param string $format format of the templates files without dot(.)
  * @return array multidimensional
  */
-function quantum_addons_get_templates( $template_paths = [], $format )  {
+function quantum_addons_get_templates( $template_paths, $format )  {
    $templates = [];
+
+   if( !is_array( $template_paths ) ) return $templates;
 
    foreach( $template_paths as $path )  {
       ///template folder exist and readable
