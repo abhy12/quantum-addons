@@ -15,6 +15,9 @@
     transform: translateY(-50%);
     z-index: 999;
 }
+.el-quantum-advance-slider-outer-container .el-quantum-slider-btn svg{
+    vertical-align: middle;
+}
 .el-quantum-advance-slider-outer-container .el-quantum-slider-btn.el-quantum-prev-btn{
     left: 0;
     transform: translateY(-50%) translateX( calc(-0px - var(--el-qunt-buttons-position)));
