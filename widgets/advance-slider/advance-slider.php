@@ -101,7 +101,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'       => esc_html__( 'Select Template', 'quantum-addons' ),
             'type'        => \Elementor\Controls_Manager::SELECT,
-            'description' => 'For information on how to <a target="_blank" href="https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md#creating-template">Create template</a>',
             'options'     => $this->slides_template_names,
             'default'     => 'default',
             'condition'   => [
@@ -115,7 +114,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
       [
             'label'        => esc_html__( 'Custom Inline Template', 'quantum-addons' ),
             'type'         => \Elementor\Controls_Manager::SWITCHER,
-            'description'  => 'For information on how to <a target="_blank" href="https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md#template-tags">Write template</a>',
             'label_on'     => 'Yes',
             'label_off'    => 'No',
             'return_value' => 'yes',
@@ -135,6 +133,15 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'condition' => [
                'is_custom_inline_template' => 'yes',
             ]
+         ]
+      );
+
+      $this->add_control(
+         'create_custom_template_alert',
+         [
+            'type'  => \Elementor\Controls_Manager::ALERT,
+            'alert_type' => 'info',
+            'content' => 'See how to ' . '<a target="_blank" href="https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md#creating-template">' . esc_html__( 'Create' ) . '</a>' . ' or '. '<a target="_blank" href="https://github.com/abhy12/quantum-addons/blob/master/widgets/advance-slider/README.md#template-tags">' . esc_html__( 'Write inline' ) . '</a> template.',
          ]
       );
 
@@ -310,7 +317,6 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'return_value'       => '1',
             'default'            => '1',
             'frontend_available' => true,
-            'description'        => __( "You extend this slider with hooks, follow this <a href='https://github.com/abhy12/quantum-addons/tree/master/widgets/advance-slider#hooks' target='_blank'>documentation</a>.")
          ]
       );
 
@@ -368,6 +374,15 @@ class Advance_slider extends \Elementor\Widget_Base  {
             'condition'          => [
                'slide_opt_autoplay' => '1',
             ]
+         ]
+      );
+
+      $this->add_control(
+         'extend_slider_with_hooks_alert',
+         [
+            'type'  => \Elementor\Controls_Manager::ALERT,
+            'alert_type' => 'info',
+            'content' => "Want more options? <a href='https://github.com/abhy12/quantum-addons/tree/master/widgets/advance-slider#hooks' target='_blank'><strong>Learn More</strong></a>",
          ]
       );
 
@@ -711,9 +726,9 @@ class Advance_slider extends \Elementor\Widget_Base  {
       $this->add_control(
          'global_wrap_link_warning',
          [
-            'type' => \Elementor\Controls_Manager::RAW_HTML,
-            'raw'  => esc_html__( 'Don\'t add any ancher tags into the template if you selecting it to "yes". If you do it will be removed.', 'quantum-addons' ),
-            'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+            'type' => \Elementor\Controls_Manager::ALERT,
+            'alert_type' => 'warning',
+            'content'  => esc_html__( 'Don\'t add any ancher tags into the template if you selecting it to "yes". If you do it will be removed.', 'quantum-addons' ),
          ]
       );
 
