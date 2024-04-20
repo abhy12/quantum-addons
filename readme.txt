@@ -2,9 +2,9 @@
 Contributors: abhishekyesankar
 Tags: elementor, elementor addons, elementor slider, elementor carousel
 Requires at least: 5.0.0
-Tested up to: 6.3
+Tested up to: 6.5.2
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -30,3 +30,14 @@ It will be in the future when this plugin have good amount of addons.
 = 0.1 =
 
 * Introduced
+
+= 0.1.2 =
+
+# Feature
+- Autoplay slider option added
+- New JS [hook](https://github.com/abhy12/quantum-addons/tree/master/widgets/advance-slider#quantum_adslider_initiated)
+
+# Fix
+- Responsive show/hide controls not working properly
+
+## And some Improvement and Fixes
