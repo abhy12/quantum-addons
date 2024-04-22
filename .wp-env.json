@@ -1,0 +1,14 @@
+{
+   "core": null,
+   "plugins": [
+      "./",
+      "https://downloads.wordpress.org/plugin/elementor.zip"
+   ],
+   "themes": [
+		"https://downloads.wordpress.org/theme/hello-elementor.zip",
+      "./hello-test-child-theme"
+	],
+   "config": {
+      "WP_ENVIRONMENT_TYPE": "development"
+   } 
+}
