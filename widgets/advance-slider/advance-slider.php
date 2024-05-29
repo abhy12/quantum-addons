@@ -896,8 +896,14 @@ class Advance_slider extends \Elementor\Widget_Base  {
          [
             'label'     => esc_html__( 'Image Height', 'quantum-addons' ),
             'type'      => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px', '%', 'rem', 'em'],
-            'default'    => [
+            'size_units'=> ['px', '%', 'rem', 'em'],
+            'range'     => [
+               'px' => [
+                  'min' => 250,
+                  'max' => 500,
+               ],
+            ],
+            'default' => [
                'unit' => 'px',
                'size' => '250'
             ],
