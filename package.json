@@ -9,7 +9,7 @@
       "wp-env": "wp-env",
       "fix-upload-folder-linux": "wp-env run wordpress sudo mkdir -p wp-content/uploads && wp-env run wordpress chmod -R 777 wp-content/uploads",
       "el-flush-css": "wp-env run cli wp elementor flush-css",
-      "start-dev-server": "wp-env start && npm run fix-upload-folder-linux && wp-env run cli wp theme activate 'hello-test-child-theme' && npm run el-flush-css",
+      "start-dev-server": "wp-env start && npm run fix-upload-folder-linux && npm run el-flush-css",
       "stop-dev-server": "wp-env stop"
    },
    "repository": {
