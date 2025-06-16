@@ -80,11 +80,11 @@ class Advance_slider extends \Elementor\Widget_Base  {
    }
 
    public function get_script_depends()  {
-      return ['advance-slider-script'];
+      return ['swiper', 'advance-slider-script'];
    }
 
    public function get_style_depends()  {
-      return ['advance-slider-styles'];
+      return ['e-swiper', 'advance-slider-styles'];
    }
 
    protected function register_controls()  {
