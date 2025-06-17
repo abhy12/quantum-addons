@@ -4,7 +4,7 @@ Tags: elementor, elementor addons, elementor slider, elementor carousel
 Requires at least: 5.0.0
 Tested up to: 6.5.2
 Requires PHP: 7.4
-Stable tag: 0.1.2
+Stable tag: 0.1.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -41,3 +41,11 @@ It will be in the future when this plugin have good amount of addons.
 - Responsive show/hide controls not working properly
 
 ## And some Improvement and Fixes
+
+= 0.1.2.1 =
+
+# Fix
+
+## Advance Slider
+- CSS and Javascript not loading
+- HTML wrapper of additional content to 'div'
