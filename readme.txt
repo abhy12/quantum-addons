@@ -2,7 +2,7 @@
 Contributors: abhishekyesankar
 Tags: elementor, elementor addons, elementor slider, elementor carousel
 Requires at least: 5.0.0
-Tested up to: 6.5.2
+Tested up to: 6.8.1
 Requires PHP: 7.4
 Stable tag: 0.1.2.1
 License: GPLv3
