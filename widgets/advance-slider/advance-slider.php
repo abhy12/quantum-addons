@@ -935,6 +935,18 @@ class Advance_slider extends \Elementor\Widget_Base  {
          ]
       );
 
+      $this->add_control(
+         'image_border_radius',
+         [
+            'label'     => esc_html__( 'Border Radius', 'quantum-addons' ),
+            'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units'=> ['px', '%', 'rem', 'em'],
+            'selectors' => [
+               '{{WRAPPER}} .el-quantum-slider-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+            ],
+         ]
+      );
+
       $this->end_controls_section();
 
       $this->start_controls_section(
